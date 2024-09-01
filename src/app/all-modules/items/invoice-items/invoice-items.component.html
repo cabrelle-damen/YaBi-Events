@@ -1,0 +1,66 @@
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h3 class="page-title">Items</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a [routerLink]="'/index'">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Items List</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="card invoices-tabs-card">
+            <div class="card-body card-body pt-0 pb-0">
+                <div class="invoices-items-main-tabs">
+                    <div class="row align-items-center">
+                        <div class="col-lg-12 col-md-12">
+                            <div class="invoices-items-tabs">
+                                <ul>
+                                    <li><a [routerLink]="'/items/invoice-items'" class="active">comments-list</a></li>
+                                    <li><a [routerLink]="'/items/invoice-category'">Category</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+
+        <!-- Comments Section -->
+       <!-- Comments Section -->
+<div class="comments-section">
+    <h4>Comments</h4>
+    <ul class="comments-list">
+        <li *ngFor="let comment of comments" [class.banned]="comment.isBanned">
+            <div *ngIf="!comment.isBanned">
+                <p>{{ comment.content }}</p>
+                <!-- Validation Button -->
+                <button *ngIf="!comment.isValidated" (click)="validateComment(comment.id)">Valider</button>
+                
+                <!-- Ban Reason Input -->
+                <textarea [(ngModel)]="banReason" placeholder="Enter ban reason"></textarea>
+                
+                <!-- Ban Button -->
+                <button (click)="banComment(comment.id)">Ban Comment</button>
+
+                <!-- Status Indicators -->
+                <span *ngIf="comment.isValidated" class="status valid">Comment is validated</span>
+            </div>
+            
+            <div *ngIf="comment.isBanned">
+                <p><i>This comment has been banned</i></p>
+                <p><strong>Reason:</strong> {{ comment.banReason }}</p>
+            </div>
+        </li>
+    </ul>
+</div>
+
+    </div>
+</div>
+<!-- /Page Wrapper -->

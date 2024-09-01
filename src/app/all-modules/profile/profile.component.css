@@ -1,0 +1,79 @@
+/* Global Styles */
+.page-wrapper {
+    background-color: white; /* Blanc pour le fond général */
+    color: #333; /* Couleur de texte par défaut */
+}
+
+.page-header h3.page-title {
+    color: #008000; /* Vert pour le titre de la page */
+}
+
+.progress-bar {
+    background-color: #FFA500; /* Orange */
+}
+
+
+.breadcrumb-item a {
+    color: #FFA500; /* Orange pour les liens de la breadcrumb */
+}
+
+.breadcrumb-item.active {
+    color: #008000; /* Vert pour l'élément actif dans la breadcrumb */
+}
+
+/* Profile Cover */
+.custom-file-btn-label {
+    background-color: #008000; /* Vert pour le bouton de changement de couverture */
+    color: white;
+}
+
+.custom-file-btn-label:hover {
+    background-color: #FFA500; /* Orange au survol */
+    color: white;
+}
+
+/* Avatar Styles */
+.avatar-xxl {
+    border: 5px solid white; /* Garde la bordure blanche */
+}
+
+.avatar-edit {
+    background-color: #FFA500; /* Orange pour l'icône de modification d'avatar */
+    color: white;
+}
+
+.avatar-uploader-icon {
+    color: white;
+}
+
+/* Progress Bar */
+.progress-bar {
+    background-color: #008000; /* Vert pour la barre de progression */
+}
+
+/* Card Headers */
+.card-header {
+    background-color: #008000; /* Vert pour l'en-tête des cartes */
+    color: white;
+}
+
+.btn-white {
+    background-color: white;
+    color: #008000; /* Vert pour les boutons blancs */
+    border: 1px solid #008000;
+}
+
+.btn-white:hover {
+    background-color: #FFA500; /* Orange pour le survol des boutons */
+    color: white;
+    border-color: #FFA500;
+}
+
+/* Activity Feed */
+.activity-feed .feed-date {
+    color: #008000; /* Vert pour la date dans le feed */
+}
+
+.activity-feed .feed-text {
+    color: #FFA500; /* Orange pour le texte dans le feed */
+}

@@ -1,0 +1,36 @@
+.tickets-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .ticket {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .qrcode-container {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .ticket h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+  
+  .ticket p {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+  .alert {
+    text-align: center;
+    margin-top: 20px;
+  }
+  

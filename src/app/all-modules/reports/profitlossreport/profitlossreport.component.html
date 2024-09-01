@@ -1,0 +1,67 @@
+<div class="page-wrapper">
+	<div class="content container-fluid">
+	  <div class="page-header">
+		<div class="row align-items-center">
+		  <div class="col">
+			<h3 class="page-title">{{ event?.title }}</h3>
+			<ul class="breadcrumb">
+			  <li class="breadcrumb-item">
+				<a [routerLink]="'/index'">Dashboard</a>
+			  </li>
+			  <li class="breadcrumb-item">
+				<a [routerLink]="'/reports/profit-loss-report'">Profit & Loss Report</a>
+			  </li>
+			  <li class="breadcrumb-item active">{{ event?.title }}</li>
+			</ul>
+		  </div>
+		</div>
+	  </div>
+  
+	  <div *ngIf="event" class="event-details-container">
+		<div class="event-image">
+		  <img [src]="event.photo" alt="{{ event.title }}" />
+		</div>
+		<div class="event-details">
+	        <p><strong>Date:</strong> {{ event.date | date }}</p>
+        <p><strong>Location:</strong> {{ event.location }}</p>
+        <p><strong>Organizer:</strong> {{ event.organizer }}</p>
+        <p><strong>Category:</strong> {{ event.category.name }}</p>
+        <p><strong>Description:</strong> {{ event.description }}</p>
+        <p *ngIf="event.pricePerSeat > 0">
+          <strong>Price Per Seat:</strong> {{ event.pricePerSeat | currency }}
+        </p>
+        <p *ngIf="event.pricePerSeat === 0"><strong>Price:</strong> Gratuit</p>
+
+  
+		  <button
+			class="btn btn-primary"
+			[disabled]="participating"
+			(click)="participate()"
+		  >
+			{{ participating ? "Vous êtes participant" : "Participer" }}
+		  </button>
+  
+		  <div class="progress mt-3">
+			<div
+			  class="progress-bar"
+			  role="progressbar"
+			  [style.width.%]="participationPercentage"
+			  [attr.aria-valuenow]="participationPercentage"
+			  aria-valuemin="0"
+			  aria-valuemax="100"
+			>
+			  {{ event.participants }} / {{ event.numberOfSeats }} participants
+			</div>
+		  </div>
+		</div>
+	  </div>
+  
+	  <div *ngIf="!event && !errorMessage" class="loading">
+		Loading event details...
+	  </div>
+	  <div *ngIf="errorMessage" class="error">
+		{{ errorMessage }}
+	  </div>
+	</div>
+  </div>
+  

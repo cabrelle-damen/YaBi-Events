@@ -1,0 +1,105 @@
+/* Page Wrapper Styling */
+.page-wrapper {
+    background-color: #ffffff; /* White */
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* Page Header Styling */
+.page-header {
+    border-bottom: 3px solid #ff9800; /* Orange */
+    padding-bottom: 20px;
+    margin-bottom: 25px;
+}
+
+.page-title {
+    color: #4CAF50; /* Green */
+    font-weight: 600;
+    font-size: 28px;
+}
+
+.breadcrumb {
+    background-color: transparent;
+    padding: 0;
+}
+
+.breadcrumb-item a {
+    color: #ff9800; /* Orange */
+    text-decoration: underline;
+}
+
+.breadcrumb-item.active {
+    color: #4CAF50; /* Green */
+}
+
+/* Comments Section Styling */
+.comments-section {
+    margin-top: 35px;
+}
+
+.comments-section h4 {
+    color: #4CAF50; /* Green */
+    font-size: 26px;
+    border-bottom: 3px solid #4CAF50; /* Green */
+    padding-bottom: 12px;
+    margin-bottom: 25px;
+}
+
+.comments-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.comments-list li {
+    background-color: #ffffff; /* White */
+    border: 1px solid #4CAF50; /* Green */
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.comments-list li:hover {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.comments-list p {
+    color: #333333; /* Dark Grey */
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.comments-list button {
+    background-color: #ff9800; /* Orange */
+    color: #ffffff; /* White */
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 12px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.comments-list button:hover {
+    background-color: #e68900; /* Darker Orange on hover */
+}
+
+.comments-list span {
+    color: #4CAF50; /* Green */
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.comments-list i {
+    color: #ff0000; /* Bright Red for banned comments */
+    font-style: italic;
+}
+
+.comments-list li.banned {
+    background-color: #ffebee; /* Light Red background for banned comments */
+    border-color: #ff0000; /* Bright Red border for banned comments */
+}

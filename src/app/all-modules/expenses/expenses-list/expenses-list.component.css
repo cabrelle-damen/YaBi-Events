@@ -1,0 +1,105 @@
+/* Styles globaux */
+body {
+    background-color: #f4f4f4; /* Couleur de fond gris clair */
+    font-family: 'Roboto', sans-serif; /* Police moderne et propre */
+    margin: 0;
+    padding: 20px;
+}
+
+/* Styles des cartes */
+.card {
+    background-color: #ffffff; /* Fond blanc pur */
+    border: 1px solid #ddd; /* Bordure légère */
+    border-radius: 12px; /* Coins arrondis doux */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre subtile */
+    margin-bottom: 25px;
+    text-align: left; /* Alignement du texte à gauche */
+    transition: box-shadow 0.3s ease-in-out; /* Transition d'ombre au survol */
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Ombre plus prononcée au survol */
+}
+
+/* En-tête de la carte */
+.card-body h5 {
+    color: #28a745; /* Vert vif pour l'en-tête */
+    font-weight: 700; /* Poids des caractères plus audacieux */
+    margin-bottom: 12px;
+    font-size: 1.5em; /* Taille du titre légèrement augmentée */
+}
+
+/* Chiffres dans les cartes */
+.card-body h3 {
+    color: #ff7f00; /* Orange vif pour les chiffres */
+    font-size: 2.5em; /* Taille des chiffres augmentée */
+    margin: 0;
+    font-weight: 800; /* Chiffres gras pour plus d'impact */
+}
+
+/* Listes */
+.card-body ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.card-body li {
+    color: #495057; /* Gris doux pour un bon contraste */
+    font-size: 1.2em; /* Taille légèrement augmentée */
+    margin: 12px 0;
+    display: flex;
+    align-items: center;
+    padding: 12px; /* Espacement plus généreux autour des éléments de la liste */
+    border-bottom: 1px solid #f1f1f1; /* Ligne de séparation plus légère */
+    transition: background-color 0.3s ease; /* Transition de couleur de fond au survol */
+}
+
+.card-body li:hover {
+    background-color: #e9ecef; /* Légère couleur de fond au survol */
+}
+
+.card-body li:last-child {
+    border-bottom: none; /* Pas de ligne pour le dernier élément */
+}
+
+/* Style pour les images des événements */
+.event-photo {
+    width: 50px; /* Taille des images légèrement réduite */
+    height: 50px;
+    border-radius: 8px; /* Coins arrondis pour un look moderne */
+    margin-right: 20px; /* Espace plus généreux à droite de l'image */
+    object-fit: cover;
+    border: 2px solid #28a745; /* Bordure verte pour faire ressortir l'image */
+}
+
+/* Effet d'animation légère */
+.event-photo:hover {
+    transform: scale(1.1); /* Zoom léger au survol */
+    transition: transform 0.2s ease-in-out; /* Transition douce */
+}
+
+/* Bouton de soumission */
+.btn-primary {
+    background-color: #ff7f00; /* Orange pour le bouton */
+    border-color: #ff7f00;
+    color: #fff; /* Texte blanc */
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+    margin: 0 auto; /* Centrer le bouton */
+    display: block;
+}
+
+.btn-primary:hover {
+    background-color: #e67300; /* Orange plus foncé au survol */
+    border-color: #e67300;
+}
+
+/* Message de soumission */
+.submission-message {
+    margin-top: 20px;
+    font-weight: bold;
+    color: #28a745; /* Vert pour le message de confirmation */
+    text-align: center;
+}

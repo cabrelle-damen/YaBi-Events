@@ -1,0 +1,17 @@
+[
+    {
+       "id": 1,
+       "name": "Palais de Sports",
+       "latitude": 3.847,
+       "longitude": 11.502,
+       "available": true
+    },
+    {
+       "id": 2,
+       "name": "Place de la Fête",
+       "latitude": 3.848,
+       "longitude": 11.503,
+       "available": false
+    }
+ ]
+ 

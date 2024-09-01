@@ -1,0 +1,62 @@
+.events-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 400px);
+    gap: 20px;
+   
+  }
+
+  .page-title{
+    color: green;
+
+  }
+
+  .breadcrumb-item {
+    color: green;
+    padding: 15px;
+
+  }
+  
+  .event {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+  }
+  
+  .event-image img {
+    width: 80%;
+    height: 150px;
+    border-bottom: 2px solid green;
+    border-radius: 5px;
+  }
+  
+  .event-details {
+    padding-top: 10px;
+  }
+  
+  .event-date {
+    font-weight: bold;
+    color: green;
+    margin-bottom: 5px;
+  }
+  
+  .event-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .event-location {
+    color: #555;
+    margin-bottom: 5px;
+  }
+  
+  .event-price, .event-price-free {
+    font-size: 16px;
+    font-weight: bold;
+    color: green;
+  }
+  

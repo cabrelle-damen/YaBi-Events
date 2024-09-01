@@ -1,0 +1,96 @@
+.settings-wrapper {
+  padding: 20px;
+}
+
+.card {
+  border: 1px solid #ccc;
+}
+
+.card-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #ccc;
+}
+
+.settings-container h2 {
+  color: #28a745;
+}
+
+.content {
+  display: flex;
+}
+
+.element-card {
+  width: 300px;
+  margin-right: 50px;
+}
+
+.element-details {
+  margin-top: 20px;
+}
+
+.element-details h4 {
+  color: #28a745;
+}
+
+.element-details label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.element-details input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+}
+
+.ticket-area {
+  flex-grow: 1;
+  border: 1px dashed #28a745;
+  position: relative;
+  min-height: 400px;
+  background-color: #fff;
+}
+
+.editable-text {
+  border: 1px solid #28a745;
+  padding: 5px;
+}
+
+.image-placeholder {
+  border: 1px solid #28a745;
+  cursor: pointer;
+}
+
+.qr-code-placeholder {
+  border: 1px solid #28a745;
+  cursor: pointer;
+}
+
+.actions {
+  margin-top: 20px;
+}
+
+.btn-vert {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.btn-blanc {
+  background-color: #fff;
+  color: #28a745;
+  border: 1px solid #28a745;
+}
+
+.btn-orange {
+  background-color: #ff7f50;
+  color: #fff;
+}
+
+.btn-delete {
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+}

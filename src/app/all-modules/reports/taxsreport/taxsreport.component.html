@@ -1,0 +1,40 @@
+<div class="page-wrapper">
+	<div class="content container-fluid">
+	  <div class="page-header">
+		<div class="row align-items-center">
+		  <div class="col">
+			<h3 class="page-title">Vos Billets</h3>
+			<ul class="breadcrumb">
+			  <li class="breadcrumb-item">
+				<a [routerLink]="'/index'">Dashboard</a>
+			  </li>
+			  <li class="breadcrumb-item active">Billets</li>
+			</ul>
+		  </div>
+		</div>
+	  </div>
+  
+	  <!-- Afficher les billets pour les événements auxquels l'utilisateur participe -->
+	  <div *ngIf="events.length > 0">
+		<div *ngFor="let event of events" class="ticket">
+		  <h3>Événement : {{ event.title }}</h3>
+		  <p><strong>Date de début:</strong> {{ event.startDate | date }}</p>
+		  <p><strong>Date de fin:</strong> {{ event.endDate | date }}</p>
+		  <p><strong>Lieu:</strong> {{ event.location }}</p>
+		  <p><strong>Ville:</strong> {{ event.city }}</p>
+		  <p><strong>Numéro du billet:</strong> {{ event.ticketNumber || 'N/A' }}</p>
+		  <p><strong>Prix:</strong> {{ event.pricePerSeat > 0 ? (event.pricePerSeat | currency) : 'Gratuit' }}</p>
+  
+		  <div class="qrcode-container mt-3">
+			<qrcode [qrdata]="event.qrCodeData" errorCorrectionLevel="M"></qrcode>
+		  </div>
+		</div>
+	  </div>
+  
+	  <!-- Message si l'utilisateur ne participe à aucun événement -->
+	  <div *ngIf="events.length === 0" class="alert alert-info">
+		Vous ne participez à aucun événement pour l'instant.
+	  </div>
+	</div>
+  </div>
+  

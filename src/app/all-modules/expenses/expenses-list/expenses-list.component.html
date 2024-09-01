@@ -1,0 +1,55 @@
+<div class="page-wrapper">
+    <div class="content container-fluid">
+
+        <div class="page-header">
+			<div class="row align-items-center">
+				<div class="col">
+					<h3 class="page-title">statistique</h3>
+					<ul class="breadcrumb">
+						<li class="breadcrumb-item"><a>Dashboard</a></li>
+						<li class="breadcrumb-item active">statistique</li>
+					</ul>
+				</div>
+				<div class="col-auto">
+					<a [routerLink]="'/add-expenses'"  class="btn btn-primary me-1">
+						<i class="fas fa-plus"></i>
+					</a>
+					<a class="btn btn-primary filter-btn" href="javascript:void(0);" id="filter_search">
+						<i class="fas fa-filter"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+
+        <div class="row">
+            <!-- Card for Total Users -->
+            <div class="col-md-6">
+                <div class="card">
+					<div class="card-body">
+						<h5>Total Users</h5>
+						<h3>{{dashboardStats?.totalUsers}}</h3>
+						<ul>
+							<li *ngFor="let user of dashboardStats?.userNames">{{ user }}</li>
+						</ul>
+					</div>
+                </div>
+            </div>
+
+            <!-- Card for Total Events -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5>Total Events</h5>
+                        <h3>{{dashboardStats?.totalEvents}}</h3>
+                        <ul>
+                            <li *ngFor="let event of dashboardStats?.events">
+                                <img class="event-photo" [src]="event.photo" alt="{{ event.title }}" />
+                                {{ event.title }} - {{ event.date | date:'shortDate' }}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

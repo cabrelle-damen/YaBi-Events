@@ -1,0 +1,61 @@
+<div class="page-wrapper">
+  <div class="content container-fluid">
+    <div class="container">
+
+      <div class="card mt-5">
+        <div class="card-body">
+
+          <h1>Gestion des Estimations et des Lieux d'Événements</h1>
+
+          <!-- Section des Estimations -->
+          <div>
+            <h2>Liste des lieu</h2>
+            <!-- Contenu existant pour les estimations -->
+          </div>
+
+          <!-- Section pour Ajouter un Lieu -->
+          <div>
+            <h2>Ajouter un Lieu</h2>
+            <input type="text" placeholder="Nom du lieu" [(ngModel)]="newLieu.name" />
+            <input type="text" placeholder="Latitude" [(ngModel)]="newLieu.lat" />
+            <input type="text" placeholder="Longitude" [(ngModel)]="newLieu.lng" />
+            <button (click)="addLieu()">Ajouter</button>
+          </div>
+
+          <!-- Section Liste des Lieux Publics -->
+          <div>
+            <h2>Liste des Lieux Publics</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nom</th>
+                  <th>Latitude</th>
+                  <th>Longitude</th>
+                  <th>Disponibilité</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let lieu of lieux">
+                  <td>{{ lieu.id }}</td>
+                  <td>{{ lieu.name }}</td>
+                  <td>{{ lieu.lat }}</td>
+                  <td>{{ lieu.lng }}</td>
+                  <td>{{ lieu.available ? 'Disponible' : 'Non Disponible' }}</td>
+                  <td>
+                    <button class="edit" (click)="toggleAvailability(lieu.id)">
+                      Marquer comme {{ lieu.available ? 'Non Disponible' : 'Disponible' }}
+                    </button>
+                    <button (click)="deleteLieu(lieu.id)">Supprimer</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

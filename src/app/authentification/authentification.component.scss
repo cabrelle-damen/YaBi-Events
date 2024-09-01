@@ -1,0 +1,38 @@
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #32CD32, #FFA500); /* Dégradé de vert à orange */
+  color: #006400; /* Couleur texte vert foncé */
+}
+
+.auth-image {
+  width: 150px; /* Ajuster la taille de l'image */
+  height: auto;
+  margin-bottom: 20px;
+}
+
+button {
+  background-color: #008000; /* Vert moyen pour le fond des boutons */
+  color: #ffffff; /* Texte blanc */
+  border: 2px solid #FFA500; /* Bordure orange */
+  padding: 12px 24px;
+  margin: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 25px; /* Bordures arrondies */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Transition pour l'effet hover */
+}
+
+button:hover {
+  background-color: #32CD32; /* Vert clair au survol */
+  transform: scale(1.05); /* Légère mise en avant au survol */
+}
+
+button:active {
+  background-color: #006400; /* Vert foncé lorsqu'on clique */
+  transform: scale(0.95); /* Légère réduction au clic */
+}

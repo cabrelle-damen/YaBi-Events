@@ -1,0 +1,83 @@
+/* Card Styles */
+.card {
+  background-color: #fff; /* Fond blanc */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Card Header */
+.card-header {
+  background-color: #28a745; /* En-tête vert */
+  color: #fff; /* Texte blanc */
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+/* Form Labels */
+.form-group label,
+.form-check-label {
+  font-size: 1.2rem; /* Augmenter la taille des labels */
+  font-weight: bold;
+  color: #28a745; /* Texte vert */
+  
+}
+
+.form-check-label{
+ width: 80px;
+}
+
+
+/* Form Inputs */
+.form-control {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+/* Radio Buttons */
+.form-check-input {
+  margin-right: 10px;
+}
+
+/* Large Radio Buttons */
+.large-radio {
+  width: 20px;
+  height: 20px;
+}
+
+/* Submit Button */
+.btn-primary {
+  background-color: #ff7f00; /* Bouton orange */
+  border-color: #ff7f00; /* Bordure orange */
+  color: #fff; /* Texte blanc */
+  padding: 10px 20px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  margin-top: 10px; /* Espace au-dessus du bouton */
+}
+
+.btn-primary:hover {
+  background-color: #e67300; /* Orange plus foncé au survol */
+  border-color: #e67300;
+}
+
+/* Form Group Spacing */
+.form-group.row {
+  margin-bottom: 15px;
+}
+
+/* Text End (for centering the button) */
+.text-end {
+  text-align: center; /* Centrer le bouton dans la div */
+}
+
+/* Submission Message */
+.submission-message {
+  margin-top: 15px;
+  font-weight: bold;
+  color: #4CAF50; /* Texte vert */
+  text-align: center; /* Centrer le texte */
+}

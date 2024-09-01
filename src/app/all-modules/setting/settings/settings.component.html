@@ -1,0 +1,70 @@
+<div class="settings-wrapper">
+  <div class="card">
+    <div class="card-header">
+      <div class="settings-container">
+        <h2>Création de Modèle de Billet</h2>
+        <div class="content">
+          <div class="card element-panel">
+            <h3>Ajouter des éléments</h3>
+            <button class="btn-vert" (click)="addComponent('text')">Ajouter Texte</button>
+            <button class="btn-blanc" (click)="addComponent('image')">Ajouter Image</button>
+            <button class="btn-orange" (click)="addComponent('qr-code')">Ajouter QR Code</button>
+
+            <div *ngIf="selectedItem" class="element-details">
+              <h4>Détails de l'Élément</h4>
+              <div *ngIf="selectedItem.type === 'text'">
+                <label for="text-content">Texte:</label>
+                <input id="text-content" type="text" [(ngModel)]="selectedItem.content" />
+              </div>
+              <div *ngIf="selectedItem.type === 'qr-code'">
+                <label for="qr-content">Contenu QR Code:</label>
+                <input id="qr-content" type="text" [(ngModel)]="selectedItem.qrCodeContent" />
+              </div>
+              <div *ngIf="selectedItem.type === 'image'">
+                <button (click)="onLogoSelect(selectedItem)">Sélectionner une Image</button>
+              </div>
+              <div>
+                <label>Taille (Largeur x Hauteur):</label>
+                <input type="number" [(ngModel)]="selectedItem.width" placeholder="Largeur" />
+                <input type="number" [(ngModel)]="selectedItem.height" placeholder="Hauteur" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Ticket Design Area -->
+          <div class="ticket-area" #ticketArea>
+            <div *ngFor="let item of ticketContent" cdkDrag
+              [ngStyle]="{'top.px': item.position.y, 'left.px': item.position.x, 'position': 'absolute', 'cursor': 'move'}"
+              (cdkDragEnded)="onDragEnd($event, item)" (click)="selectItem(item)">
+              
+              <textarea *ngIf="item.type === 'text'" class="editable-text"
+                [ngStyle]="{'width.px': item.width || 200, 'height.px': item.height || 50}"
+                (input)="onTextChange($event, item)">
+                {{ item.content }}
+              </textarea>
+
+              <div *ngIf="item.type === 'image'" class="image-placeholder" (click)="onLogoSelect(item)">
+                <img [src]="item.url" [style.width.px]="item.width" [style.height.px]="item.height" />
+                <span *ngIf="!item.url">Cliquez pour ajouter une image</span>
+              </div>
+
+              <div *ngIf="item.type === 'qr-code'" class="qr-code-placeholder">
+                <qrcode *ngIf="item.qrCodeContent" [qrdata]="item.qrCodeContent" [width]="item.width || 100"
+                  [errorCorrectionLevel]="'M'">
+                </qrcode>
+                <span *ngIf="!item.qrCodeContent">Cliquez pour ajouter un QR Code</span>
+              </div>
+
+              <button class="delete-button" (click)="deleteItem(item)">Supprimer</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="btn-vert" (click)="saveTemplate()">Sauvegarder</button>
+          <button class="btn-blanc" (click)="loadTemplate()">Charger</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

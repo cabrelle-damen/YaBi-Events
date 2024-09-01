@@ -1,0 +1,46 @@
+.page-wrapper {
+  background-color: white;
+  color: #333;
+}
+
+.page-header {
+  border-bottom: 2px solid orange;
+  margin-bottom: 20px;
+}
+
+.breadcrumb {
+  background-color: white;
+}
+
+.breadcrumb .breadcrumb-item a {
+  color: green;
+}
+
+.breadcrumb .breadcrumb-item.active {
+  color: orange;
+}
+
+.event-details-container {
+  display: flex;
+  gap: 20px;
+}
+
+.event-image img {
+  max-width: 300px;
+  border: 2px solid green;
+  border-radius: 5px;
+}
+
+.event-details {
+  flex: 1;
+}
+
+.progress {
+  background-color: lightgray;
+}
+
+.progress-bar {
+  background-color: orange;
+  color: white;
+  text-align: center;
+}

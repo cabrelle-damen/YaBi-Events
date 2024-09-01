@@ -1,0 +1,33 @@
+<div class="page-wrapper">
+  <div class="content container-fluid">
+    <div class="page-header">
+      <div class="row align-items-center">
+        <div class="col">
+          <h3 class="page-title">List of Events</h3>
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a [routerLink]="'/index'">Dashboard</a></li>
+            <li class="breadcrumb-item active">List of Events</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="events-container">
+      <div class="event" *ngFor="let event of events">
+        <div class="event-image">
+          <img [src]="event.photo" alt="{{ event.title }}" />
+        </div>
+        <div class="event-details">
+          <div class="event-date">{{ event.date | date }}</div>
+          <div class="event-title">{{ event.title }}</div>
+          <div class="event-location">{{ event.location }}</div>
+          <div *ngIf="event.pricePerSeat > 0" class="event-price">
+            {{ event.pricePerSeat | currency }}
+          </div>
+          <div *ngIf="event.pricePerSeat === 0" class="event-price-free">Gratuit</div>
+          <button [routerLink]="['/reports/profit-loss-report', event.id]">View Details</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
