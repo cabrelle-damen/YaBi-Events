@@ -10,16 +10,16 @@ import { AuthenticationGuard } from 'src/app/core/auth/authentication.guard';
 const routes: Routes = [
   {path:'',component:ReportsComponent,
   children: [
-    { path: "sales-report", component: SalesreportComponent },
-    { path: "expenses-report", component: ExpensesreportComponent},
-    { path: "profit-loss-report", component: ProfitlossreportComponent},
+    { path: "creer-Event", component: SalesreportComponent },
+    { path: "list-Events", component: ExpensesreportComponent},
+    { path: "details-Events", component: ProfitlossreportComponent},
     { 
-      path: 'profit-loss-report/:id', 
+      path: 'details-Events/:id', 
       component: ProfitlossreportComponent,
       canActivate: [AuthenticationGuard]  
     },
 
-    { path: "taxs-report", component: TaxsreportComponent}
+    { path: "billet", component: TaxsreportComponent}
   ]
 }
 ];

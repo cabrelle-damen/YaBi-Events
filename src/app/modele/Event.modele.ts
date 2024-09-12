@@ -1,8 +1,11 @@
 import { Category } from "./category.model";
+import { Place } from "./place.model";
+
+
 
 export interface Event {
   id: string;
-  title: string;
+  name: string;
   description: string;
   category: Category; // Liaison à l'objet Category
   type: 'public' | 'private';
@@ -12,13 +15,16 @@ export interface Event {
   endDate: Date; // Date de fin
   location: string;
   organizer: string;
+  eventPlace: Place[];
   country: string; // Pays
   city: string; // Ville
-  numberOfSeats: number; // Nombre de places
+  numberOfPlaces?: number;
   pricePerSeat: number; // Coût par place
-  photo: string; // Photo en base64
+  imgUrl?: string;
   participants: number; // Nombre de participants
   ticketNumber?: string; // Numéro de billet (propriété optionnelle)
   startTime?: string; // Heure de début (optionnelle)
   endTime?: string; // Heure de fin (optionnelle)
+  isOnline?: boolean;
+  isFree: boolean;
 }

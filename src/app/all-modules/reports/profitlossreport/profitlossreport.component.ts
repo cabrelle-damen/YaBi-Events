@@ -33,7 +33,7 @@ export class ProfitlossreportComponent implements OnInit {
   }
 
   participate(): void {
-    if (this.event && this.event.participants! < this.event.numberOfSeats!) {
+    if (this.event && this.event.participants! < this.event.numberOfPlaces!) {
       this.event.participants++; // Increment participants
       this.participating = true;
     }
@@ -41,7 +41,7 @@ export class ProfitlossreportComponent implements OnInit {
 
   get participationPercentage(): number {
     if (this.event) {
-      return (this.event.participants! / this.event.numberOfSeats!) * 100;
+      return (this.event.participants! / this.event.numberOfPlaces!) * 100;
     }
     return 0;
   }

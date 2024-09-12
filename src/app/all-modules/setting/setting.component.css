@@ -1,0 +1,39 @@
+/* Pour centrer le contenu du composant */
+.page-wrapper {
+    display: flex;
+    justify-content: center;  /* Centre horizontalement */
+    align-items: center;      /* Centre verticalement */
+    min-height: 100vh;        /* Prend la hauteur complète de l'écran */
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;  /* Assure que tout le contenu prend la largeur complète */
+}
+
+/* Style pour les colonnes */
+.row {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.col-xl-3, .col-xl-9, .col-md-4, .col-md-8 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Pour ajuster la taille des colonnes */
+.col-xl-3, .col-md-4 {
+    max-width: 300px;  /* Ajuste la taille de la colonne */
+}
+
+.col-xl-9, .col-md-8 {
+    max-width: 700px;  /* Ajuste la taille de la colonne */
+}

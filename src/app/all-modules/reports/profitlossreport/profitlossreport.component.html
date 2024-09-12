@@ -3,15 +3,15 @@
 	  <div class="page-header">
 		<div class="row align-items-center">
 		  <div class="col">
-			<h3 class="page-title">{{ event?.title }}</h3>
+			<h3 class="page-title">{{ event?.name }}</h3>
 			<ul class="breadcrumb">
 			  <li class="breadcrumb-item">
 				<a [routerLink]="'/index'">Dashboard</a>
 			  </li>
 			  <li class="breadcrumb-item">
-				<a [routerLink]="'/reports/profit-loss-report'">Profit & Loss Report</a>
+				<a [routerLink]="'/reports/profit-loss-report'">details-Events</a>
 			  </li>
-			  <li class="breadcrumb-item active">{{ event?.title }}</li>
+			  <li class="breadcrumb-item active">{{ event?.name }}</li>
 			</ul>
 		  </div>
 		</div>
@@ -19,7 +19,7 @@
   
 	  <div *ngIf="event" class="event-details-container">
 		<div class="event-image">
-		  <img [src]="event.photo" alt="{{ event.title }}" />
+		  <img [src]="event.imgUrl" alt="{{ event.name }}" />
 		</div>
 		<div class="event-details">
 	        <p><strong>Date:</strong> {{ event.date | date }}</p>
@@ -50,7 +50,7 @@
 			  aria-valuemin="0"
 			  aria-valuemax="100"
 			>
-			  {{ event.participants }} / {{ event.numberOfSeats }} participants
+			  {{ event.participants }} / {{ event.numberOfPlaces }} participants
 			</div>
 		  </div>
 		</div>

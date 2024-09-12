@@ -4,11 +4,11 @@ import { AuthenticationGuard } from '../core/auth/authentication.guard';
 import { AllModulesComponent } from './all-modules.component';
 
 const routes: Routes = [
-  {
-    path: "",
-    redirectTo: "index",
-    pathMatch: "full",
-  },
+  // {
+  //   path: "",
+  //   redirectTo: "index",
+  //   pathMatch: "full",
+  // },
   {
     path:"",
     component:AllModulesComponent,
@@ -44,7 +44,7 @@ const routes: Routes = [
     canActivate: [AuthenticationGuard],
   },
   {
-    path: 'customers',
+    path: 'users',
     loadChildren: () =>
       import('./customers/customers.module').then((m) => m.CustomersModule),
     canActivate: [AuthenticationGuard],
@@ -86,7 +86,7 @@ const routes: Routes = [
 
         },
         {
-          path: 'reports',
+          path: 'events',
           loadChildren: () =>
             import('./reports/reports.module').then(
               (m) => m.ReportsModule
@@ -179,7 +179,7 @@ const routes: Routes = [
 
         },
         {
-          path: 'horizondal-form',
+          path: 'certification',
           loadChildren: () =>
             import(
               './ui interface/forms/horizondal-form/horizondal-form.module'

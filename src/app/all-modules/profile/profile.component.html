@@ -42,7 +42,8 @@
                             <i class="fas fa-edit avatar-uploader-icon shadow-soft"></i>
                         </span>
                     </label>
-                    <h2>{{ firstName }} {{ lastName }} <i class="fas fa-certificate text-primary small" data-bs-toggle="tooltip" data-placement="top" title="Verified"></i></h2>
+                    <h2>{{ firstName }} {{ lastName }} <i class="fas fa-certificate text-primary small"
+                            data-bs-toggle="tooltip" data-placement="top" title="Verified"></i></h2>
                     <ul class="list-inline">
                         <li class="list-inline-item">
                             <i class="far fa-envelope"></i> {{ email }}
@@ -57,7 +58,8 @@
                             <!-- Progress -->
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="progress progress-md flex-grow-1">
-                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 30%"
+                                        aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                                 <span class="ms-4">30%</span>
                             </div>
@@ -86,6 +88,16 @@
                                         {{ email }}
                                     </li>
                                 </ul>
+
+                                <!-- Certify My Account button (display only if the account is not certified) -->
+                                <button class="btn btn-primary mt-3" *ngIf="!isCertified" (click)="certifyAccount()">
+                                    Certifier mon compte
+                                </button>
+
+                                <!-- Show certified message if the account is certified -->
+                                <div *ngIf="isCertified" class="alert alert-success mt-3">
+                                    Compte certifié
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -51,18 +51,25 @@
   background-color: #fff;
 }
 
+/* Updated styles for the textarea to remove scrollbars */
 .editable-text {
-  border: 1px solid #28a745;
+  border: none;
   padding: 5px;
+  background-color: transparent;
+  resize: none; /* Disable resizing */
+  overflow: hidden; /* Hide scrollbar */
+  width: 100%; /* Ensure it takes full width */
+  height: auto; /* Automatically adjust height */
 }
 
+/* Ensure images and QR code placeholders have no borders */
 .image-placeholder {
-  border: 1px solid #28a745;
+  border: none;
   cursor: pointer;
 }
 
 .qr-code-placeholder {
-  border: 1px solid #28a745;
+  border: none;
   cursor: pointer;
 }
 

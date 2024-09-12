@@ -10,7 +10,7 @@ const routes: Routes = [
     path: '',
     component: CustomersComponent,
     children: [
-      { path: "customers-list", component: CustomerListComponent },
+      { path: "users", component: CustomerListComponent },
       { path: "add-customer", component: AddCustomerComponent},
       { path: "edit-customer", component: EditCustomerComponent}
     ]

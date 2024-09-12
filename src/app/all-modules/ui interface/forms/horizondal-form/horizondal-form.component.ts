@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CertificationService } from 'src/app/services/certification.service';
 
 @Component({
   selector: 'app-horizondal-form',
@@ -12,12 +13,11 @@ export class HorizondalFormComponent implements OnInit {
   gender!: string;
   profilePhoto!: File;
   cni!: File;
-  submissionMessage: string = ''; // Pour afficher le message de soumission
+  submissionMessage: string = '';
 
-  constructor() { }
+  constructor(private certificationService: CertificationService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onProfilePhotoSelected(event: any) {
     this.profilePhoto = event.target.files[0];
@@ -28,12 +28,19 @@ export class HorizondalFormComponent implements OnInit {
   }
 
   onSubmit() {
-    // Afficher le message sur la page
+    if (!this.profilePhoto || !this.cni) {
+      // Handle invalid form case (profile photo or CNI missing)
+      this.submissionMessage = 'Profile photo and CNI are required.';
+      return;
+    }
+
+    // Show a message while verifying the information
     this.submissionMessage = 'Veuillez patienter, nous vérifions vos informations';
-    
-    // Simuler une soumission avec un délai (par exemple 3 secondes)
+
+    // Simulate a submission with a delay
     setTimeout(() => {
       this.submissionMessage = 'Informations vérifiées. Votre formulaire a été soumis avec succès.';
+      this.certificationService.setCertificationStatus(true);
     }, 3000);
   }
 }

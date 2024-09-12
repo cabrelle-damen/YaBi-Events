@@ -28,6 +28,10 @@
                 <input type="number" [(ngModel)]="selectedItem.width" placeholder="Largeur" />
                 <input type="number" [(ngModel)]="selectedItem.height" placeholder="Hauteur" />
               </div>
+              <!-- Bouton Supprimer ici -->
+              <div>
+                <button class="btn btn-danger" (click)="deleteItem(selectedItem)">Supprimer</button>
+              </div>
             </div>
           </div>
 
@@ -55,7 +59,6 @@
                 <span *ngIf="!item.qrCodeContent">Cliquez pour ajouter un QR Code</span>
               </div>
 
-              <button class="delete-button" (click)="deleteItem(item)">Supprimer</button>
             </div>
           </div>
         </div>

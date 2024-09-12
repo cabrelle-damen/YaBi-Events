@@ -5,62 +5,76 @@
         <div class="page-header">
             <div class="row align-items-center">
                 <div class="col">
-                    <h3 class="page-title">Items</h3>
+                    <h3 class="page-title">Commentaires</h3>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a [routerLink]="'/index'">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Items List</li>
+                        <li class="breadcrumb-item active">Liste des Commentaires</li>
                     </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="card invoices-tabs-card">
-            <div class="card-body card-body pt-0 pb-0">
-                <div class="invoices-items-main-tabs">
-                    <div class="row align-items-center">
-                        <div class="col-lg-12 col-md-12">
-                            <div class="invoices-items-tabs">
-                                <ul>
-                                    <li><a [routerLink]="'/items/invoice-items'" class="active">comments-list</a></li>
-                                    <li><a [routerLink]="'/items/invoice-category'">Category</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
         <!-- /Page Header -->
 
-        <!-- Comments Section -->
-       <!-- Comments Section -->
-<div class="comments-section">
-    <h4>Comments</h4>
-    <ul class="comments-list">
-        <li *ngFor="let comment of comments" [class.banned]="comment.isBanned">
-            <div *ngIf="!comment.isBanned">
-                <p>{{ comment.content }}</p>
-                <!-- Validation Button -->
-                <button *ngIf="!comment.isValidated" (click)="validateComment(comment.id)">Valider</button>
-                
-                <!-- Ban Reason Input -->
-                <textarea [(ngModel)]="banReason" placeholder="Enter ban reason"></textarea>
-                
-                <!-- Ban Button -->
-                <button (click)="banComment(comment.id)">Ban Comment</button>
+        <div *ngIf="successMessage" class="alert alert-success">
+            {{ successMessage }}
+        </div>
 
-                <!-- Status Indicators -->
-                <span *ngIf="comment.isValidated" class="status valid">Comment is validated</span>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card card-table">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-stripped table-hover datatable">
+                                <thead class="thead-light">
+                                    <tr>
+                                       <th>Commentaire</th>
+                                       <th>Date</th>
+                                       <th>Statut</th>
+                                       <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let comment of comments">
+                                        <td>{{ comment.content }}</td>
+                                        <td>{{ comment.date | date: 'short' }}</td>
+                                        <td>{{ comment.status }}</td> <!-- Colonne de statut -->
+                                        <td class="text-end">
+                                            <!-- Bouton pour bannir un commentaire -->
+                                            <button class="btn btn-sm btn-danger me-2"
+                                                    (click)="banComment(comment.id)"
+                                                    [disabled]="comment.status === 'banni' || comment.status === 'valide'">
+                                                Bannir
+                                            </button>
+                                            <!-- Bouton pour valider un commentaire -->
+                                            <button class="btn btn-sm btn-success"
+                                                    (click)="validateComment(comment.id)"
+                                                    [disabled]="comment.status === 'valide' || comment.status === 'banni'">
+                                                Valider
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
-            
-            <div *ngIf="comment.isBanned">
-                <p><i>This comment has been banned</i></p>
-                <p><strong>Reason:</strong> {{ comment.banReason }}</p>
-            </div>
-        </li>
-    </ul>
-</div>
-
+        </div>
     </div>
 </div>
-<!-- /Page Wrapper -->
+
+<!-- Overlay pour désactiver le fond -->
+<div class="custom-modal-overlay" *ngIf="showBanModal"></div>
+
+<!-- Modal personnalisée pour entrer la raison du bannissement -->
+<div class="custom-modal" *ngIf="showBanModal">
+    <div class="modal-content">
+      <h4>Raison du Bannissement</h4>
+      <textarea [(ngModel)]="banReason" placeholder="Saisir la raison" required></textarea>
+      <div *ngIf="errorMessage" class="text-danger">{{ errorMessage }}</div> <!-- Message d'erreur -->
+      <div class="modal-buttons">
+        <button class="btn btn-secondary" (click)="cancelBan()">Annuler</button>
+        <button class="btn btn-danger" (click)="confirmBanComment()">Bannir</button>
+      </div>
+    </div>
+</div>

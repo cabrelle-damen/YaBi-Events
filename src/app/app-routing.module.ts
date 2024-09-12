@@ -11,14 +11,14 @@ const routes: Routes = [
   // { path: 'index', component: DashboardComponent, canActivate: [AuthenticationGuard] }, // Assurez-vous que cette route est configurée
 
 
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  {
-    path: 'login',
-    loadChildren: () =>
-      import('./all-modules/authentication/login/login.module').then(
-        (m) => m.LoginModule
-      ),
-  },
+  // { path: '', redirectTo: 'login', pathMatch: 'full' },
+  // {
+  //   path: 'login',
+  //   loadChildren: () =>
+  //     import('./all-modules/authentication/login/login.module').then(
+  //       (m) => m.LoginModule
+  //     ),
+  // },
   {
     path: 'forgot-pass',
     loadChildren: () =>

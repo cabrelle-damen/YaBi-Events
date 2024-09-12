@@ -1,36 +1,132 @@
-.tickets-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  
-  .ticket {
-    background: #fff;
-    border: 1px solid #ddd;
-    padding: 20px;
-    border-radius: 5px;
-    width: 300px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .qrcode-container {
-    margin-top: 15px;
-    display: flex;
-    justify-content: center;
-  }
-  
-  .ticket h3 {
-    font-size: 20px;
-    margin-bottom: 15px;
-  }
-  
-  .ticket p {
-    font-size: 14px;
-    margin-bottom: 10px;
-  }
-  
-  .alert {
-    text-align: center;
-    margin-top: 20px;
-  }
-  
+.settings-wrapper {
+  padding: 20px;
+  margin-left: 5em; /* Utiliser une marge plus raisonnable */
+}
+
+.card {
+  border: 1px solid #ccc;
+  margin-bottom: 20px; /* Ajouter un espacement en bas des cartes */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ajouter une ombre légère */
+}
+
+.card-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #ccc;
+  padding: 15px; /* Ajouter un padding pour l'espacement */
+}
+
+.settings-container h2 {
+  color: #28a745;
+  font-size: 1.5em; /* Ajuster la taille du titre */
+}
+
+.content {
+  display: flex;
+  justify-content: space-between; /* Distribuer l'espace entre les éléments */
+  margin-top: 20px; /* Ajouter un espacement en haut */
+}
+
+.element-card {
+  width: 300px;
+  margin-right: 20px; /* Réduire la marge pour un espacement plus cohérent */
+}
+
+.element-details {
+  margin-top: 20px;
+}
+
+.element-details h4 {
+  color: #28a745;
+  font-weight: bold;
+}
+
+.element-details label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.element-details input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px; /* Ajouter des bords arrondis */
+}
+
+.ticket-area {
+  flex-grow: 1;
+  border: 1px dashed #28a745;
+  position: relative;
+  width: 600px;
+  height: 600px;
+  background-color: #fff;
+  overflow: hidden;
+  padding: 10px; /* Ajouter un peu de padding pour éviter que les éléments collent aux bords */
+}
+
+/* Updated styles for the textarea to remove scrollbars */
+.editable-text {
+  border: none;
+  padding: 5px;
+  background-color: transparent;
+  resize: none;
+  overflow: hidden; /* Hide scrollbar */
+  width: 100%; /* Ensure it takes full width */
+  height: auto; /* Automatically adjust height */
+  font-size: 16px; /* Ajuster la taille de la police */
+  color: #333;
+}
+
+/* Ensure images and QR code placeholders have no borders */
+.image-placeholder, .qr-code-placeholder {
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+}
+
+.actions {
+  margin-top: 20px;
+  text-align: right; /* Aligner les boutons à droite */
+}
+
+.btn-vert, .btn-blanc, .btn-orange, .btn-delete {
+  padding: 10px 20px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-vert {
+  background-color: #28a745;
+  color: #fff;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.btn-blanc {
+  background-color: #fff;
+  color: #28a745;
+  border: 1px solid #28a745;
+  margin-left: 10px;
+
+}
+
+.btn-orange {
+  background-color: #ff7f50;
+  color: #fff;
+  margin-left: 10px;
+
+}
+
+.btn-delete {
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  margin-top: 10px;
+}

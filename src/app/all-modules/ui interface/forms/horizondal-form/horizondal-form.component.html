@@ -6,10 +6,10 @@
 					<div class="page-header">
 						<div class="row">
 							<div class="col">
-								<h3 class="page-title">Horizontal Form</h3>
+								<h3 class="page-title">Artist Certification</h3>
 								<ul class="breadcrumb">
 									<li class="breadcrumb-item"><a routerLink="/index">Dashboard</a></li>
-									<li class="breadcrumb-item active">Horizontal Form</li>
+									<li class="breadcrumb-item active">Artist Certification</li>
 								</ul>
 							</div>
 						</div>
@@ -120,67 +120,126 @@
 					</div> -->
 					<div class="row">
 						<div class="col-md-12">
-							<div class="card">
-								<div class="card-header">
-									<h5 class="card-title">Artist Certification Form</h5>
-								</div>
-								<div class="card-body">
-									<form (ngSubmit)="onSubmit()">
-										<div class="row">
-											<div class="col-xl-6">
-												<div class="form-group row">
-													<label class="col-lg-3 col-form-label">Artist Name</label>
-													<div class="col-lg-9">
-														<input type="text" class="form-control" [(ngModel)]="artistName" name="artistName" required>
-													</div>
-												</div>
-												<div class="form-group row">
-													<label class="col-lg-3 col-form-label">Email</label>
-													<div class="col-lg-9">
-														<input type="email" class="form-control" [(ngModel)]="email" name="email" required>
-													</div>
-												</div>
-												<div class="form-group row">
-													<label class="col-lg-3 col-form-label">Gender</label>
-													<div class="col-lg-9">
-														<div class="form-check form-check-inline">
-															<input class="form-check-input large-radio" type="radio" [(ngModel)]="gender" name="gender" value="Male" required>
-															<label class="form-check-label">Male</label>
-														</div>
-														<div class="form-check form-check-inline">
-															<input class="form-check-input large-radio" type="radio" [(ngModel)]="gender" name="gender" value="Female" required>
-															<label class="form-check-label">Female</label>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="col-xl-6">
-												<div class="form-group row">
-													<label class="col-lg-3 col-form-label">Profile Photo</label>
-													<div class="col-lg-9">
-														<input type="file" class="form-control" (change)="onProfilePhotoSelected($event)" required>
-													</div>
-												</div>
-												<div class="form-group row">
-													<label class="col-lg-3 col-form-label">Upload CNI</label>
-													<div class="col-lg-9">
-														<input type="file" class="form-control" (change)="onCNISelected($event)" required>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="text-end">
-											<button type="submit" class="btn btn-primary">Submit</button>
-										</div>
-									</form>
-									<!-- Afficher le message de soumission -->
-									<div *ngIf="submissionMessage" class="submission-message">
-										{{ submissionMessage }}
-									</div>
-								</div>
+						  <div class="card">
+							<div class="card-header">
+							  <h5 class="card-title">Artist Certification Form</h5>
 							</div>
+							<div class="card-body">
+							  <form (ngSubmit)="onSubmit()" #artistForm="ngForm">
+								<div class="row">
+								  <div class="col-xl-6">
+									<!-- Artist Name -->
+									<div class="form-group row">
+									  <label class="col-lg-3 col-form-label">Artist Name</label>
+									  <div class="col-lg-9">
+										<input 
+										  type="text" 
+										  class="form-control" 
+										  [(ngModel)]="artistName" 
+										  name="artistName" 
+										  #artistNameModel="ngModel"
+										  required>
+										<div *ngIf="artistNameModel.invalid && artistNameModel.touched" class="text-danger">
+										  Artist name is required.
+										</div>
+									  </div>
+									</div>
+					  
+									<!-- Email -->
+									<div class="form-group row">
+									  <label class="col-lg-3 col-form-label">Email</label>
+									  <div class="col-lg-9">
+										<input 
+										  type="email" 
+										  class="form-control" 
+										  [(ngModel)]="email" 
+										  name="email" 
+										  #emailModel="ngModel" 
+										  required>
+										<div *ngIf="emailModel.invalid && emailModel.touched" class="text-danger">
+										  A valid email is required.
+										</div>
+									  </div>
+									</div>
+					  
+									<!-- Gender -->
+									<div class="form-group row">
+									  <label class="col-lg-3 col-form-label">Gender</label>
+									  <div class="col-lg-9">
+										<div class="form-check form-check-inline">
+										  <input 
+											class="form-check-input large-radio" 
+											type="radio" 
+											[(ngModel)]="gender" 
+											name="gender" 
+											value="Male" 
+											required>
+										  <label class="form-check-label">Male</label>
+										</div>
+										<div class="form-check form-check-inline">
+										  <input 
+											class="form-check-input large-radio" 
+											type="radio" 
+											[(ngModel)]="gender" 
+											name="gender" 
+											value="Female" 
+											required>
+										  <label class="form-check-label">Female</label>
+										</div>
+									  </div>
+									</div>
+								  </div>
+					  
+								  <!-- Right Column -->
+								  <div class="col-xl-6">
+									<!-- Profile Photo -->
+									<div class="form-group row">
+									  <label class="col-lg-3 col-form-label">Profile Photo</label>
+									  <div class="col-lg-9">
+										<input 
+										  type="file" 
+										  class="form-control" 
+										  (change)="onProfilePhotoSelected($event)" 
+										  required>
+										<div *ngIf="!profilePhoto && artistForm.submitted" class="text-danger">
+										  Profile photo is required.
+										</div>
+									  </div>
+									</div>
+					  
+									<!-- Upload CNI -->
+									<div class="form-group row">
+									  <label class="col-lg-3 col-form-label">Upload CNI</label>
+									  <div class="col-lg-9">
+										<input 
+										  type="file" 
+										  class="form-control" 
+										  (change)="onCNISelected($event)" 
+										  required>
+										<div *ngIf="!cni && artistForm.submitted" class="text-danger">
+										  CNI is required.
+										</div>
+									  </div>
+									</div>
+								  </div>
+								</div>
+					  
+								<!-- Submit Button -->
+								<div class="text-end">
+								  <button type="submit" class="btn btn-primary" [disabled]="artistForm.invalid">Submit</button>
+								</div>
+							  </form>
+					  
+							  <!-- Submission message -->
+							  <div *ngIf="submissionMessage" class="submission-message">
+								{{ submissionMessage }}
+							  </div>
+							</div>
+						  </div>
 						</div>
-					</div>
+					  </div>
+					  
+					  
 					
 					  
 					  

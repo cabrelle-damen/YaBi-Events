@@ -7,8 +7,8 @@ import { ItemsComponent } from './items.component';
 const routes: Routes = [
   {path:'',component:ItemsComponent,
   children: [
-    { path: "invoice-items", component: InvoiceItemsComponent },
-    { path: "invoice-category", component: InvoiceCategoryComponent},
+    { path: "comments", component: InvoiceItemsComponent },
+    { path: "category", component: InvoiceCategoryComponent},
 ]
 }
 

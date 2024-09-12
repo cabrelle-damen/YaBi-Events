@@ -17,8 +17,11 @@ export class CategoryService {
   }
 
   private loadInitialCategories(): void {
-    this.http.get<any[]>(this.apiUrl).pipe(
-      tap(categories => this.categoriesSubject.next(categories)),
+    this.http.get<any>(this.apiUrl).pipe( // Changez le type d'Observable ici
+      tap(response => {
+        console.log('Catégories chargées:', response); // Vérifiez ici
+        this.categoriesSubject.next(response.data); // Accédez à `data`
+      }),
       catchError(this.handleError<any[]>('loadInitialCategories', []))
     ).subscribe();
   }
@@ -51,17 +54,18 @@ export class CategoryService {
     );
   }
 
-  deleteCategory(categoryId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${categoryId}`).pipe(
+  deleteCategory(Id: string): Observable<void> { // Changez number en string
+    return this.http.delete<void>(`${this.apiUrl}/${Id}`).pipe(
       tap(() => {
         const currentCategories = this.categoriesSubject.value.filter(
-          cat => cat.id !== categoryId
+          cat => cat._id !== Id // Utilisez _id si nécessaire
         );
         this.categoriesSubject.next(currentCategories);
       }),
       catchError(this.handleError<void>('deleteCategory'))
     );
   }
+  
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

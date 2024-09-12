@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth-service';
+import { CertificationService } from 'src/app/services/certification.service';
 
 @Component({
   selector: 'app-profile',
@@ -14,11 +15,21 @@ export class ProfileComponent implements OnInit {
   firstName!: string;
   lastName!: string;
   email!: string;
+  isCertified = false;  // To store the certification status
 
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(
+    private router: Router, 
+    private authService: AuthService,
+    private certificationService: CertificationService
+  ) {}
 
   ngOnInit(): void {
     this.getUserDetails();
+
+    // Subscribe to the certification status
+    this.certificationService.getCertificationStatus().subscribe(status => {
+      this.isCertified = status;
+    });
   }
 
   about() {
@@ -52,5 +63,9 @@ export class ProfileComponent implements OnInit {
     } else {
       console.error('Error fetching user profile');
     }
+  }
+
+  certifyAccount() {
+    this.router.navigateByUrl('/certification');
   }
 }

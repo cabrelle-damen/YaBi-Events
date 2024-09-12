@@ -11,6 +11,8 @@
     left: 0px;
     transform: translate3d(-127px, 60px, 0px);
 }
+
+/* Arrow icon */
 .sidebar-menu .menu-arrow {
 	-webkit-transition: -webkit-transform 0.15s;
     -o-transition: -o-transform 0.15s;
@@ -26,21 +28,27 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-transform: translate(0, 0);
-    -transform: translate(0, 0);
-    -o-transform: translate(0, 0);
     transform: translate(0, 0);
+    -o-transform: translate(0, 0);
     line-height: 18px;
     top: 11px;
+    color: #ffffff; /* White color */
 }
+
 .sidebar-menu .menu-arrow:before {
 	content: "\f105";
+	color: #32CD32; /* Medium green color */
 }
+
 .sidebar-menu li a.subdrop .menu-arrow {
 	-ms-transform: rotate(90deg);
 	-webkit-transform: rotate(90deg);
 	-o-transform: rotate(90deg);
 	transform: rotate(90deg);
+	color: #FFA500; /* Orange color */
 }
+
 .sidebar-menu ul ul a .menu-arrow {
 	top: 10px;
+	color: #ffffff; /* White color */
 }

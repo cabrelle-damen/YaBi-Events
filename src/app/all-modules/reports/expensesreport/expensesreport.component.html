@@ -15,17 +15,18 @@
     <div class="events-container">
       <div class="event" *ngFor="let event of events">
         <div class="event-image">
-          <img [src]="event.photo" alt="{{ event.title }}" />
+          <img [src]="event.imgUrl" alt="{{ event.name }}" />
         </div>
         <div class="event-details">
-          <div class="event-date">{{ event.date | date }}</div>
-          <div class="event-title">{{ event.title }}</div>
-          <div class="event-location">{{ event.location }}</div>
+          <div class="event-date">{{ event.endDate | date }}</div>
+          <div class="event-title">{{ event.name }}</div>
+          <div class="event-location">{{ event.eventPlace }}</div>
+          <!-- <div class="event-location">{{ event.city }}</div> -->
           <div *ngIf="event.pricePerSeat > 0" class="event-price">
             {{ event.pricePerSeat | currency }}
           </div>
           <div *ngIf="event.pricePerSeat === 0" class="event-price-free">Gratuit</div>
-          <button [routerLink]="['/reports/profit-loss-report', event.id]">View Details</button>
+          <button [routerLink]="['/events/details-Events', event.id]">View Details</button>
         </div>
       </div>
     </div>

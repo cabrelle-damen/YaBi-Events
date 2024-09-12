@@ -15,29 +15,30 @@ export class SalesreportComponent implements OnInit {
   events: Event[] = [];
   categories: Category[] = [];
   selectedEvent: Event | null = null;
-  
+
   newEvent: Event = {
     id: '',
-    title: '',
+    name: '',
     description: '',
     category: { id: 0, name: '' },
-    type: 'private', // Peut maintenant être modifié par l'utilisateur
+    type: 'private',
     status: 'draft',
     date: new Date(),
     startDate: new Date(),
     endDate: new Date(),
-    startTime: '', // Nouveaux champs pour l'heure de début
-    endTime: '',   // Nouveaux champs pour l'heure de fin
     location: '',
     organizer: '',
     country: '',
     city: '',
-    numberOfSeats: 0,
+    numberOfPlaces: 0,
     pricePerSeat: 0,
-    photo: '',
+    imgUrl: '',
     participants: 0,
+    isFree: false,
+    isOnline: false,
+    eventPlace: [] // Initialize as an empty array of Place
   };
-
+  
   countries: string[] = [];
   cities: string[] = [];
   errorMessage: string = '';
@@ -50,9 +51,9 @@ export class SalesreportComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loadEvents();
-    this.loadCategories();
-    this.countries = this.lieuService.getCountries();
+    // this.loadEvents();
+    // this.loadCategories();
+    // this.countries = this.lieuService.getCountries();
   }
 
   loadCategories(): void {
@@ -102,7 +103,7 @@ export class SalesreportComponent implements OnInit {
   resetForm(): void {
     this.newEvent = {
       id: '',
-      title: '',
+      name: '',
       description: '',
       category: { id: 0, name: '' },
       type: 'private',
@@ -110,27 +111,29 @@ export class SalesreportComponent implements OnInit {
       date: new Date(),
       startDate: new Date(),
       endDate: new Date(),
-      startTime: '', 
-      endTime: '',
       location: '',
       organizer: '',
       country: '',
       city: '',
-      numberOfSeats: 0,
+      numberOfPlaces: 0,
       pricePerSeat: 0,
-      photo: '',
+      imgUrl: '',
       participants: 0,
+      isFree: false,
+      isOnline: false,
+      eventPlace: [] // Initialize as an empty array of Place
     };
     this.selectedEvent = null;
     this.cities = [];
   }
+  
 
   onFileSelected(event: any): void {
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = (e: any) => {
-        this.newEvent.photo = e.target.result;
+        this.newEvent.imgUrl = e.target.result;
       };
       reader.readAsDataURL(file);
     }

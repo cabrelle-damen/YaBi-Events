@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TaxsreportRoutingModule } from './taxsreport-routing.module';
 import { TaxsreportComponent } from './taxsreport.component';
 import { QRCodeModule } from 'angularx-qrcode';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 
 @NgModule({
@@ -12,6 +13,7 @@ import { QRCodeModule } from 'angularx-qrcode';
   imports: [
     CommonModule,
     TaxsreportRoutingModule,
+    DragDropModule,
     
 
   ]

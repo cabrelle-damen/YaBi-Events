@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { Category } from 'src/app/modele/category.model';
 import { CategoryService } from 'src/app/services/category-service';
 
 @Component({
@@ -10,13 +11,12 @@ import { CategoryService } from 'src/app/services/category-service';
 })
 export class InvoiceCategoryComponent implements OnInit {
   categories: any[] = [];
-  isAdmin$!: Observable<boolean>; // Role control
+  isAdmin$!: Observable<boolean>; 
 
   categoryForm: FormGroup;
 
   constructor(private categoryService: CategoryService, private fb: FormBuilder) {
     this.categoryForm = this.fb.group({
-      id: [''],
       name: ['', Validators.required],
       description: ['', Validators.required]
     });
@@ -27,8 +27,19 @@ export class InvoiceCategoryComponent implements OnInit {
   }
 
   loadCategories(): void {
-    this.categoryService.getCategories().subscribe(categories => {
-      this.categories = categories;
+    this.categoryService.getCategories().subscribe({
+      next: categories => {
+        if (Array.isArray(categories)) {
+          this.categories = categories;
+          console.log('Catégories chargées:', this.categories); // Vérifiez ici
+        } else {
+          console.error('Les catégories ne sont pas un tableau:', categories);
+          this.categories = []; // Réinitialisez en cas d'erreur
+        }
+      },
+      error: err => {
+        console.error('Erreur lors de la récupération des catégories:', err);
+      }
     });
   }
 
@@ -50,11 +61,25 @@ export class InvoiceCategoryComponent implements OnInit {
     this.categoryForm.patchValue(category);
   }
 
-  deleteCategory(category: any): void {
-    this.categoryService.deleteCategory(category.id).subscribe(() => {
-      this.loadCategories();
-    });
+  
+  deleteCategory(category: any): void { // Utilisez 'any' pour plus de flexibilité
+    console.log('Catégorie à supprimer:', category); // Affichez l'objet complet pour déboguer
+  
+    const categoryId = category._id; // Récupérez l'ID en utilisant `_id`
+    
+    if (categoryId) {
+      this.categoryService.deleteCategory(categoryId).subscribe(() => {
+        console.log('Catégorie supprimée avec succès');
+        this.loadCategories(); // Rechargez les catégories après suppression
+      }, error => {
+        console.error('Erreur lors de la suppression de la catégorie:', error);
+      });
+    } else {
+      console.error('Identifiant de catégorie invalide.');
+    }
   }
+  
+  
 
   resetForm(): void {
     this.categoryForm.reset();

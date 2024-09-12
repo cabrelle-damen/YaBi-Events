@@ -10,6 +10,7 @@ import { TaxsreportComponent } from './taxsreport/taxsreport.component';
 import { DataTablesModule } from 'angular-datatables';
 import { FormsModule } from '@angular/forms';
 import { QRCodeModule } from 'angularx-qrcode';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { QRCodeModule } from 'angularx-qrcode';
     SalesreportComponent,
     TaxsreportComponent,
     
+    
 
   ],
   imports: [
@@ -27,6 +29,7 @@ import { QRCodeModule } from 'angularx-qrcode';
     ReportsRoutingModule,
     DataTablesModule,
     FormsModule,
+    DragDropModule,
     QRCodeModule
   ]
 })

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MockEventService } from 'src/app/services/mock-event.service';
 import { Event } from 'src/app/modele/Event.modele';
 import { Router } from '@angular/router';
+import { EventService } from 'src/app/services/event-service';
 
 @Component({
   selector: 'app-expensesreport',
@@ -12,7 +12,7 @@ export class ExpensesreportComponent implements OnInit {
   events: Event[] = [];
   errorMessage: string = '';
 
-  constructor(private eventService: MockEventService, private router: Router) {}
+  constructor(private eventService: EventService, private router: Router) {}
 
   ngOnInit(): void {
     this.loadEvents();
@@ -20,17 +20,21 @@ export class ExpensesreportComponent implements OnInit {
 
   loadEvents(): void {
     this.eventService.getEvents().subscribe({
-      next: (data: Event[]) => {
-        this.events = data;
+      next: (response: any) => {
+        // Les événements sont dans la clé 'data' de la réponse
+        this.events = response.data || [];
       },
       error: (err: any) => {
-        this.errorMessage = err;
+        this.errorMessage = 'Failed to load events: ' + err.message;
       }
     });
   }
+  
+  
+  
+
 
   viewEventDetails(eventId: string): void {
-    this.router.navigate([`/profit-loss-report/${eventId}`]);
+    this.router.navigate([`/details-Events/${eventId}`]);
   }
-  
 }

@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 import { KeycloakUserService } from './keycloak-user.service';
 import { MockEventService } from './mock-event.service';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,41 +15,47 @@ export class DashboardService {
     private eventService: MockEventService
   ) {}
 
-  getDashboardStats(): Observable<any> {
+  getDashboardStats(): Observable<{
+    totalUsers: number,
+    userNames: string[],
+    totalEvents: number,
+    totalParticipants: number,
+    events: { photo: string | undefined, title: string, date: Date, participants: number }[]
+  }> {
     return forkJoin({
-        users: this.userService.getUsers(),
-        events: this.eventService.getEvents()
+      users: this.userService.getUsers(), // Observable<User[]>
+      events: this.eventService.getEvents() // Observable<Event[]>
     }).pipe(
-        map(data => {
-            const totalUsers = data.users.length;
-            // Utilisez `username` ou combinez firstName et lastName
-            const userNames = data.users.map(user => user.firstName + ' ' + user.lastName);
-            
-            const totalEvents = data.events.length;
-            const events = data.events.map(event => ({
-                photo: event.photo,
-                title: event.title,
-                date: event.date,
-                participants: event.participants
-            }));
-
-            console.log('User Names:', userNames); // Debug les noms des utilisateurs
-            console.log('Events:', events); // Debug les événements
-
-            return {
-                totalUsers,
-                userNames, 
-                totalEvents,
-                totalParticipants: data.events.reduce((acc, event) => acc + event.participants, 0),
-                events 
-            };
-        })
+      map(data => {
+        const totalUsers = data.users.length;
+  
+        const userNames = data.users.map(user => `${user.firstName} ${user.lastName}`);
+  
+        const totalEvents = data.events.length;
+        const events = data.events.map(event => ({
+          photo: event.imgUrl, // This can now be undefined
+          title: event.name,
+          date: event.date,
+          participants: event.participants
+        }));
+  
+        console.log('User Names:', userNames);
+        console.log('Events:', events);
+  
+        return {
+          totalUsers,
+          userNames,
+          totalEvents,
+          totalParticipants: data.events.reduce((acc, event) => acc + event.participants, 0),
+          events
+        };
+      })
     );
-}
+  }
   
   
 
-  getExpenses(): Observable<any[]> {
+  getExpenses(): Observable<{ id: number, description: string, amount: number }[]> {
     // Remplacez par un vrai appel à votre service de dépenses
     return of([
       { id: 1, description: 'Expense 1', amount: 100 },
@@ -56,10 +63,8 @@ export class DashboardService {
     ]);
   }
 
-  // Ajoutez la méthode deleteExpense
-  deleteExpense(expenseId: number): Observable<any> {
+  deleteExpense(expenseId: number): Observable<{ success: boolean }> {
     // Remplacez par un vrai appel à votre service de dépenses
     return of({ success: true });
   }
-  
 }

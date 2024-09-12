@@ -2,72 +2,13 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f7f7f7;
-    margin: 50px;
+    margin: 20px;
     padding: 0;
     color: #333;
 }
 
 .page-wrapper {
     padding: 20px;
-}
-
-/* Page Header */
-.page-header {
-    margin-bottom: 20px;
-}
-
-.page-header .page-title {
-    font-size: 24px;
-    font-weight: bold;
-    color: #4CAF50; /* Green */
-}
-
-.page-header .breadcrumb {
-    background: none;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-}
-
-.page-header .breadcrumb-item a {
-    color: #ff9800; /* Orange */
-}
-
-.page-header .breadcrumb-item.active {
-    color: #333; /* Darker grey */
-}
-
-/* Invoices Tabs Card */
-.card.invoices-tabs-card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    background-color: #ffffff;
-}
-
-.invoices-items-tabs ul {
-    padding: 10px 20px;
-    margin: 0;
-    list-style: none;
-    display: flex;
-}
-
-.invoices-items-tabs ul li {
-    margin-right: 15px;
-}
-
-.invoices-items-tabs ul li a {
-    color: #333;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 10px 20px;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-}
-
-.invoices-items-tabs ul li a.active {
-    background-color: #4CAF50; /* Green */
-    color: #ffffff;
 }
 
 /* Categories Management */
@@ -180,14 +121,15 @@ body {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     background-color: #ffffff; /* White background */
     margin: auto;
+    width: 100%;
+    max-width: 600px; /* Adjust the modal width */
 }
 
 /* Modal Header */
 .modal-header {
     background-color: #4CAF50; /* Green */
-    border-bottom: 1px solid #ff9800; /* Orange */
     border-radius: 10px 10px 0 0;
-    padding: 15px 20px;
+    padding: 8px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -216,7 +158,6 @@ body {
 .bank-inner-details {
     display: flex;
     flex-direction: column;
-    align-items: center;
     margin: 0 -15px;
 }
 
@@ -234,7 +175,8 @@ body {
     width: 100%;
     border: 1px solid #4CAF50; /* Green border */
     border-radius: 4px;
-    padding: 10px;
+    padding: 15px; /* Increased padding for larger input fields */
+    font-size: 16px; /* Increased font size */
 }
 
 .form-control::placeholder {
@@ -244,24 +186,21 @@ body {
 
 /* Modal Footer */
 .modal-footer {
-    background-color: #ffffff; /* White */
-    border-top: 1px solid #ff9800; /* Orange */
-    padding: 15px 20px;
+    background-color: transparent; /* White */
+    padding: 10px;
     border-radius: 0 0 10px 10px;
     display: flex;
-    justify-content: center; /* Center the buttons horizontally */
+    justify-content: flex-end; /* Align buttons to the right */
     gap: 10px;
 }
 
 .bank-details-btn .btn {
-    padding: 10px 20px;
+    padding: 10px 30px; /* Increase button padding */
     border-radius: 4px;
     text-transform: uppercase;
     font-weight: bold;
     width: auto;
     text-align: center;
-    flex: 1;
-    max-width: 48%;
 }
 
 .bank-cancel-btn {
@@ -276,11 +215,30 @@ body {
 }
 
 .bank-save-btn {
-    background-color: #ff9800;
+    background-color: #4CAF50;
     color: #ffffff;
     border: none;
 }
 
 .bank-save-btn:hover {
     background-color: #e68900; /* Darker orange */
+}
+
+/* Align the text to the left in table cells */
+.table th,
+.table td {
+    text-align: left; /* Ensure the text is aligned to the left */
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Specific style for the "Action" column to align the text to the right */
+.table .text-end {
+    text-align: right;
+}
+
+/* Changer la couleur d'arrière-plan et la couleur du texte lors du survol */
+.table tbody tr:hover {
+    background-color: #e0e0e0; /* Gris clair pour le fond */
+    color: #000000; /* Noir pour le texte */
 }

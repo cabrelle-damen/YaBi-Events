@@ -1,105 +1,98 @@
-/* Page Wrapper Styling */
-.page-wrapper {
-    background-color: #ffffff; /* White */
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+/* Styles pour l'overlay */
+.custom-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+  z-index: 9999; /* Assure que l'overlay est au-dessus de tout le reste */
+  pointer-events: all; /* Capte tous les événements de clic */
+  cursor: not-allowed; /* Change le curseur pour montrer que la zone est désactivée */
 }
 
-/* Page Header Styling */
-.page-header {
-    border-bottom: 3px solid #ff9800; /* Orange */
-    padding-bottom: 20px;
-    margin-bottom: 25px;
+/* Styles pour la modale */
+.custom-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff; /* Fond blanc pour la modale */
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  z-index: 10000; /* Modale au-dessus de l'overlay */
+  border-radius: 8px;
+  width: 80%; /* Ajuster la largeur si nécessaire */
+  max-width: 500px; /* Limite maximale pour la largeur */
 }
 
-.page-title {
-    color: #4CAF50; /* Green */
-    font-weight: 600;
-    font-size: 28px;
+/* En-tête de la modale */
+.custom-modal .modal-content h4 {
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  color: #333333; /* Couleur du texte */
 }
 
-.breadcrumb {
-    background-color: transparent;
-    padding: 0;
+/* Zone de texte pour la raison du bannissement */
+.custom-modal textarea {
+  width: 100%;
+  height: 100px;
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  resize: none; /* Désactive la possibilité de redimensionner la zone de texte */
 }
 
-.breadcrumb-item a {
-    color: #ff9800; /* Orange */
-    text-decoration: underline;
+/* Conteneur pour les boutons de la modale */
+.custom-modal .modal-buttons {
+  display: flex;
+  justify-content: space-between;
 }
 
-.breadcrumb-item.active {
-    color: #4CAF50; /* Green */
+/* Styles des boutons dans la modale */
+.custom-modal .modal-buttons .btn {
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #4CAF50; /* Couleur de fond initiale (vert) */
+  color: #ffffff; /* Couleur du texte (blanc) */
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease; /* Transition pour l'effet de survol */
 }
 
-/* Comments Section Styling */
-.comments-section {
-    margin-top: 35px;
+/* Changer la couleur de fond et du texte lors du survol */
+.custom-modal .modal-buttons .btn:hover {
+  background-color: #333333; /* Fond gris foncé */
+  color: #ffffff; /* Texte blanc */
 }
 
-.comments-section h4 {
-    color: #4CAF50; /* Green */
-    font-size: 26px;
-    border-bottom: 3px solid #4CAF50; /* Green */
-    padding-bottom: 12px;
-    margin-bottom: 25px;
+/* Bouton de validation en vert */
+.custom-modal .modal-buttons .btn-success {
+  background-color: #4CAF50; /* Vert pour le bouton de validation */
 }
 
-.comments-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+/* Bouton d'annulation en gris */
+.custom-modal .modal-buttons .btn-secondary {
+  background-color: #777777; /* Gris pour le bouton d'annulation */
 }
 
-.comments-list li {
-    background-color: #ffffff; /* White */
-    border: 1px solid #4CAF50; /* Green */
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 20px;
-    transition: box-shadow 0.3s ease-in-out;
+/* Message d'erreur en rouge */
+.text-danger {
+  color: #ff0000; /* Rouge pour les messages d'erreur */
+  font-size: 0.875rem;
+  margin-top: -10px;
+  margin-bottom: 15px;
 }
 
-.comments-list li:hover {
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.comments-list p {
-    color: #333333; /* Dark Grey */
-    margin: 0;
-    font-size: 18px;
-    line-height: 1.5;
-}
-
-.comments-list button {
-    background-color: #ff9800; /* Orange */
-    color: #ffffff; /* White */
-    border: none;
-    border-radius: 5px;
-    padding: 10px 15px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 12px;
-    transition: background-color 0.3s ease-in-out;
-}
-
-.comments-list button:hover {
-    background-color: #e68900; /* Darker Orange on hover */
-}
-
-.comments-list span {
-    color: #4CAF50; /* Green */
-    font-weight: bold;
-    font-size: 16px;
-}
-
-.comments-list i {
-    color: #ff0000; /* Bright Red for banned comments */
-    font-style: italic;
-}
-
-.comments-list li.banned {
-    background-color: #ffebee; /* Light Red background for banned comments */
-    border-color: #ff0000; /* Bright Red border for banned comments */
+/* Message de succès en vert */
+.alert-success {
+  background-color: #dff0d8; /* Fond vert clair pour le message de succès */
+  color: #3c763d; /* Texte vert foncé */
+  padding: 10px 15px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  font-size: 1rem;
 }

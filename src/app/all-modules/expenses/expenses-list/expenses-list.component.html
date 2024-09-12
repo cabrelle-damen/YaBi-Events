@@ -1,55 +1,65 @@
 <div class="page-wrapper">
     <div class="content container-fluid">
 
+        <!-- Page Header -->
         <div class="page-header">
-			<div class="row align-items-center">
-				<div class="col">
-					<h3 class="page-title">statistique</h3>
-					<ul class="breadcrumb">
-						<li class="breadcrumb-item"><a>Dashboard</a></li>
-						<li class="breadcrumb-item active">statistique</li>
-					</ul>
-				</div>
-				<div class="col-auto">
-					<a [routerLink]="'/add-expenses'"  class="btn btn-primary me-1">
-						<i class="fas fa-plus"></i>
-					</a>
-					<a class="btn btn-primary filter-btn" href="javascript:void(0);" id="filter_search">
-						<i class="fas fa-filter"></i>
-					</a>
-				</div>
-			</div>
-		</div>
+            <div class="row align-items-center">
+                <div class="col">
+                    <h3 class="page-title">Statistiques</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a>Dashboard</a></li>
+                        <li class="breadcrumb-item active">Statistiques</li>
+                    </ul>
+                </div>
+                <div class="col-auto">
+                    <a [routerLink]="'/add-expenses'" class="btn btn-primary me-1">
+                        <i class="fas fa-plus"></i> Ajouter
+                    </a>
+                    <a class="btn btn-primary filter-btn" href="javascript:void(0);" id="filter_search">
+                        <i class="fas fa-filter"></i> Filtrer
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
 
+        <!-- Statistique Cards Row -->
         <div class="row">
             <!-- Card for Total Users -->
             <div class="col-md-6">
-                <div class="card">
-					<div class="card-body">
-						<h5>Total Users</h5>
-						<h3>{{dashboardStats?.totalUsers}}</h3>
-						<ul>
-							<li *ngFor="let user of dashboardStats?.userNames">{{ user }}</li>
-						</ul>
-					</div>
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Utilisateurs</h5>
+                        <h3 class="card-text">{{ dashboardStats?.totalUsers }}</h3>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item" *ngFor="let user of dashboardStats?.userNames">
+                                {{ user }}
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
             <!-- Card for Total Events -->
             <div class="col-md-6">
-                <div class="card">
+                <div class="card text-center">
                     <div class="card-body">
-                        <h5>Total Events</h5>
-                        <h3>{{dashboardStats?.totalEvents}}</h3>
-                        <ul>
-                            <li *ngFor="let event of dashboardStats?.events">
-                                <img class="event-photo" [src]="event.photo" alt="{{ event.title }}" />
-                                {{ event.title }} - {{ event.date | date:'shortDate' }}
+                        <h5 class="card-title">Total Événements</h5>
+                        <h3 class="card-text">{{ dashboardStats?.totalEvents }}</h3>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex align-items-center" *ngFor="let event of dashboardStats?.events">
+                                <img class="event-photo me-3" [src]="event.photo" alt="{{ event.title }}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 5px;">
+                                <div>
+                                    <strong>{{ event.title }}</strong><br>
+                                    <small>{{ event.date | date: 'shortDate' }}</small>
+                                </div>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- /Statistique Cards Row -->
+
     </div>
 </div>
