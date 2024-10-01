@@ -28,21 +28,27 @@
 
 .element-card {
   width: 300px;
+  margin-left: 8px;
   margin-right: 20px; /* Réduire la marge pour un espacement plus cohérent */
 }
 
 .element-details {
   margin-top: 20px;
+  margin-left: 8px;
+
 }
 
 .element-details h4 {
   color: #28a745;
   font-weight: bold;
+  margin-left: 8px;
+
 }
 
 .element-details label {
   display: block;
   margin-bottom: 10px;
+  margin-left: 8px;
   font-weight: bold;
 }
 
@@ -51,6 +57,7 @@
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px; /* Ajouter des bords arrondis */
+  margin: 8px;
 }
 
 .ticket-area {
@@ -58,7 +65,7 @@
   border: 1px dashed #28a745;
   position: relative;
   width: 600px;
-  height: 600px;
+  height: 700px;
   background-color: #fff;
   overflow: hidden;
   padding: 10px; /* Ajouter un peu de padding pour éviter que les éléments collent aux bords */
@@ -91,8 +98,12 @@
 
 .actions {
   margin-top: 20px;
-  text-align: right; /* Aligner les boutons à droite */
+  text-align: center; /* Centrer les boutons */
+  display: flex;
+  flex-direction: column; /* Les aligner en colonne */
+  gap: 10px; /* Espacement entre les boutons */
 }
+
 
 .btn-vert, .btn-blanc, .btn-orange, .btn-delete {
   padding: 10px 20px;

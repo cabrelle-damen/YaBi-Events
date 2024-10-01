@@ -1,7 +1,8 @@
 export interface Place {
-  name: string;           
-  description?: string;               
-  country: string;          
-  city: string;            
-  isPublic?: boolean;       
+  _id?: string;  
+  name: string;
+  country: string;
+  city: string;
 }
+
+

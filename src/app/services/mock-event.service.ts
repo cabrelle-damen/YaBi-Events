@@ -98,13 +98,13 @@ export class MockEventService {
 
   createEvent(event: Event): Observable<Event> {
     const idevent = this.mockEvents.length + 1;
-    event.id = idevent.toString();
+    event._id = idevent.toString();
     this.mockEvents.push(event);
     return of(event);
   }
 
   updateEvent(event: Event): Observable<Event> {
-    const index = this.mockEvents.findIndex(e => e.id === event.id);
+    const index = this.mockEvents.findIndex(e => e._id === event._id);
     if (index !== -1) {
       this.mockEvents[index] = event;
     }
@@ -112,22 +112,22 @@ export class MockEventService {
   }
 
   deleteEvent(eventId: string): Observable<void> {
-    this.mockEvents = this.mockEvents.filter(e => e.id !== eventId);
+    this.mockEvents = this.mockEvents.filter(e => e._id !== eventId);
     return of();
   }
 
-  submitEvent(eventId: string): Observable<Event> {
-    const event = this.mockEvents.find(e => e.id === eventId);
-    if (event) {
-      event.status = 'submitted';
-      return of(event);
-    } else {
-      return of({} as Event);
-    }
-  }
+  // submitEvent(eventId: string): Observable<Event> {
+  //   const event = this.mockEvents.find(e => e._id === eventId);
+  //   if (event) {
+  //     event.status = 'submitted';
+  //     return of(event);
+  //   } else {
+  //     return of({} as Event);
+  //   }
+  // }
 
   getEvent(eventId: string): Observable<Event> {
-    const event = this.mockEvents.find(e => e.id === eventId);
+    const event = this.mockEvents.find(e => e._id === eventId);
     return of(event || {} as Event);
   }
 

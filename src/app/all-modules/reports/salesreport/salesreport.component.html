@@ -17,7 +17,7 @@
 	  <div class="card">
 		<div class="card-body">
 		  <h4>Create New Event</h4>
-		  <form (ngSubmit)="createEvent(eventForm)" #eventForm="ngForm">
+		  <form (ngSubmit)="createPlaceAndEvent(eventForm)" #eventForm="ngForm">
 			<div class="form-group">
 			  <label for="photo">Photo</label>
 			  <input
@@ -49,7 +49,7 @@
 			  />
 			</div>
   
-			<div class="form-group">
+			<!-- <div class="form-group">
 			  <label for="type">Event Type</label>
 			  <select
 				id="type"
@@ -63,13 +63,19 @@
 				<option value="private">Private</option>
 				<option value="public">Public</option>
 			  </select>
-			</div>
+			</div> -->
   
 			<div class="form-group">
-			  <label for="category">Category</label>
-			  <select [(ngModel)]="newEvent.category" name="category" required class="form-control">
-				<option *ngFor="let category of categories" [ngValue]="category">{{category.name}}</option>
-			  </select>
+								<label for="country">categories</label>
+				<select [(ngModel)]="newEvent.category" name="category" required class="form-control">
+					<option *ngFor="let category of categories" [ngValue]="category">{{ category.name }}</option>
+				  </select>
+
+				  <label for="subcategory">Subcategory</label>
+				<select [(ngModel)]="newEvent.category" name="category" required class="form-control">
+					<option *ngFor="let category of categories" [ngValue]="category">{{ category.name }}</option>
+				  </select>
+				  
 			</div>
   
 			<div class="form-group row">

@@ -19,21 +19,22 @@ import { LogoutButtonComponent } from './logout-button/logout-button.component';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
+import { initializeKeycloak } from './services/keycloak.service';
 
-function initializeKeycloak(keycloak: KeycloakService) {
-  return () =>
-    keycloak.init({
-      config: {
-        url: 'http://localhost:8080',
-        realm: 'DAMEN',
-        clientId: 'YaBi'
-      },
-      initOptions: {
-        onLoad: 'check-sso',
-        silentCheckSsoRedirectUri: window.location.origin + '/assets/silent-check-sso.html'
-      },
-    });
-}
+// function initializeKeycloak(keycloak: KeycloakService) {
+//   return () =>
+//     keycloak.init({
+//       config: {
+//         url: 'http://192.168.1.239:8080',
+//         realm: 'DAMEN',
+//         clientId: 'YaBi'
+//       },
+//       initOptions: {
+//         onLoad: 'check-sso',
+//         silentCheckSsoRedirectUri: window.location.origin + '/assets/silent-check-sso.html'
+//       },
+//     });
+// }
 
 @NgModule({
   declarations: [

@@ -4,10 +4,11 @@ import { AuthenticationGuard } from './core/auth/authentication.guard';
 import { AcceuilComponent } from './acceuil/acceuil.component';
 import { AuthentificationComponent } from './authentification/authentification.component';
 import { DashboardComponent } from './all-modules/dashboard/dashboard.component';
+import { LoginGuard } from './guard/login.guard';
 
 const routes: Routes = [
   { path: '', component: AcceuilComponent },
-  { path: 'login', component: AuthentificationComponent },
+  { path: 'login', component: AuthentificationComponent,  canActivate: [LoginGuard] },
   // { path: 'index', component: DashboardComponent, canActivate: [AuthenticationGuard] }, // Assurez-vous que cette route est configurée
 
 

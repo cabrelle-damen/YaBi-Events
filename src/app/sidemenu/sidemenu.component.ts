@@ -1,6 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Event, Router, NavigationEnd } from '@angular/router';
-import { DataService } from '../services/data.service';
 import { KeycloakService } from 'keycloak-angular';
 declare var $: any;
 
@@ -19,12 +18,9 @@ export class SidemenuComponent implements OnInit, AfterViewInit {
   base = '';
   page = '';
   isAdmin: boolean = false;
+  userName: string | undefined;
 
-  constructor(
-    public router: Router,
-    private commonService: DataService,
-    private keycloakService: KeycloakService
-  ) {
+  constructor(public router: Router, private keycloakService: KeycloakService) {
     router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
         this.splitVal = event.url.split('/');
@@ -35,9 +31,12 @@ export class SidemenuComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    // Check if the user has the 'admin' role
     const roles = this.keycloakService.getUserRoles();
     this.isAdmin = roles.includes('manage-users');
+
+    this.keycloakService.loadUserProfile().then((profile) => {
+      this.userName = profile.firstName + ' ' + profile.lastName;
+    });
 
     $(document).on('click', '#filter_search', function () {
       $('#filter_inputs').slideToggle('slow');
@@ -74,24 +73,7 @@ export class SidemenuComponent implements OnInit, AfterViewInit {
 
   doSomethingWhenScriptIsLoaded() {}
 
-  change(name: any) {
-    this.page = name;
-    // this.commonService.nextmessage('admin');
-  }
-
-  home() {
-    // this.router.navigate(['/index']);
-    window.location.href = '/index';
-  }
-
-  main() {
-    // this.commonService.nextmessage('main');
-  }
-
-  clickLogout() {
-    window.location.href = '/index';
-  }
-
+  // Add the burgerMenu method to handle the sidebar toggle logic
   burgerMenu() {
     if ($('body').hasClass('mini-sidebar')) {
       $('body').removeClass('mini-sidebar');
@@ -104,7 +86,6 @@ export class SidemenuComponent implements OnInit, AfterViewInit {
   }
 
   Logout() {
-    localStorage.removeItem('LoginData');
-    this.router.navigate(['/login-form']);
+    this.keycloakService.logout(window.location.origin + '/login');
   }
 }

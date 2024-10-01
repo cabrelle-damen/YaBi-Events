@@ -44,18 +44,23 @@ export class InvoiceCategoryComponent implements OnInit {
   }
 
   saveCategory(): void {
-    if (this.categoryForm.get('id')?.value) {
+    if (this.categoryForm.get('_id')?.value) {
+      
       this.categoryService.updateCategory(this.categoryForm).subscribe(() => {
-        this.loadCategories();
+        this.loadCategories(); 
         this.resetForm();
       });
     } else {
+      
       this.categoryService.addCategory(this.categoryForm).subscribe(() => {
-        this.loadCategories();
+        this.loadCategories(); 
         this.resetForm();
       });
     }
   }
+  
+  
+  
 
   editCategory(category: any): void {
     this.categoryForm.patchValue(category);

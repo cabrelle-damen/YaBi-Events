@@ -21,20 +21,20 @@ export class ExpensesreportComponent implements OnInit {
   loadEvents(): void {
     this.eventService.getEvents().subscribe({
       next: (response: any) => {
-        // Les événements sont dans la clé 'data' de la réponse
         this.events = response.data || [];
+        console.log(this.events)
       },
       error: (err: any) => {
         this.errorMessage = 'Failed to load events: ' + err.message;
       }
     });
   }
-  
-  
-  
-
 
   viewEventDetails(eventId: string): void {
-    this.router.navigate([`/details-Events/${eventId}`]);
+    if (eventId) {
+      this.router.navigate([`/events/details-Events/${eventId}`]);
+    } else {
+      console.error('Event ID is undefined');
+    }
   }
 }

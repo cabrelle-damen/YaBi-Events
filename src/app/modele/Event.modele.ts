@@ -4,27 +4,33 @@ import { Place } from "./place.model";
 
 
 export interface Event {
-  id: string;
+  _id?: string;
   name: string;
   description: string;
-  category: Category; // Liaison à l'objet Category
-  type: 'public' | 'private';
-  status: 'draft' | 'submitted';
-  date: Date;
-  startDate: Date; // Date de début
-  endDate: Date; // Date de fin
+  category: Category; 
+  subcategory: string;
+  startDate: Date; 
+  endDate: Date; 
   location: string;
   organizer: string;
   eventPlace: Place[];
-  country: string; // Pays
-  city: string; // Ville
+  country: string; 
+  city: string; 
   numberOfPlaces?: number;
-  pricePerSeat: number; // Coût par place
+  pricePerSeat: number; 
   imgUrl?: string;
-  participants: number; // Nombre de participants
-  ticketNumber?: string; // Numéro de billet (propriété optionnelle)
-  startTime?: string; // Heure de début (optionnelle)
-  endTime?: string; // Heure de fin (optionnelle)
+  participants: number; 
+  ticketNumber?: string; 
+  startTime?: string; 
+  endTime?: string; 
   isOnline?: boolean;
   isFree: boolean;
+
+  
+ 
 }
+
+
+
+
+

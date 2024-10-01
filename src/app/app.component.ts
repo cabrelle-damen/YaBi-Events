@@ -15,7 +15,7 @@ import {
 import { DOCUMENT } from '@angular/common';
 import { CommonServiceService } from './services/common-service.service';
 import * as Feather from 'feather-icons';
-import { AuthService } from './services/keycloak.service';
+// import { AuthService } from './services/keycloak.service';
 
 @Component({
   selector: 'app-root',
@@ -34,7 +34,7 @@ export class AppComponent implements OnInit, AfterViewInit  {
     public commonService: CommonServiceService,
     private route: ActivatedRoute,
     public Router: Router,
-	private authService: AuthService
+	// private authService: AuthService
 
   ) {
     // Router.events.subscribe((event: Event) => {
@@ -95,7 +95,7 @@ export class AppComponent implements OnInit, AfterViewInit  {
   ngOnInit(): void {
     // Sidebar Visible
 
-	this.authService.init();
+	// this.authService.init();
 
 	$('.open-layout').on("click", function (s) {
 		s.preventDefault();

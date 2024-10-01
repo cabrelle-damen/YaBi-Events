@@ -26,8 +26,10 @@
             {{ event.pricePerSeat | currency }}
           </div>
           <div *ngIf="event.pricePerSeat === 0" class="event-price-free">Gratuit</div>
-          <button [routerLink]="['/events/details-Events', event.id]">View Details</button>
+          <button [routerLink]="['/events/details-Events', event._id]">View Details</button>
         </div>
+        
+        
       </div>
     </div>
   </div>

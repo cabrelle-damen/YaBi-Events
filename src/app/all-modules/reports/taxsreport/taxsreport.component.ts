@@ -1,4 +1,6 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 
 interface TicketItem {
   type: string;
@@ -31,7 +33,7 @@ export class TaxsreportComponent implements OnInit {
       type: type,
       content: type === 'text' ? 'Texte à éditer' : '',
       qrCodeContent: type === 'qr-code' ? this.generateQRCode() : '',
-      position: { x: 10, y: 10, z: 0 }, 
+      position: { x: 10, y: 10, z: 0 },
       rotation: { x: 0, y: 0, z: 0 },
       scale: { x: 1, y: 1, z: 1 },
       width: type === 'image' ? 100 : undefined,
@@ -40,7 +42,6 @@ export class TaxsreportComponent implements OnInit {
     this.ticketContent.push(newComponent);
     this.selectedItem = newComponent;
   }
-  
 
   onDragEnd(event: any, item: TicketItem) {
     const offset = this.ticketArea.nativeElement.getBoundingClientRect();
@@ -117,5 +118,26 @@ export class TaxsreportComponent implements OnInit {
     if (data) {
       this.ticketContent = JSON.parse(data);
     }
+  }
+
+  // Ajout de la fonctionnalité de capture et téléchargement
+  downloadTicketAsImage() {
+    html2canvas(this.ticketArea.nativeElement).then((canvas: HTMLCanvasElement) => {
+      const link = document.createElement('a');
+      link.download = 'ticket.png';
+      link.href = canvas.toDataURL();
+      link.click();
+    });
+  }
+
+  downloadTicketAsPDF() {
+    html2canvas(this.ticketArea.nativeElement).then((canvas: HTMLCanvasElement) => {
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF('p', 'mm', 'a4');
+      const imgWidth = 210; // Largeur A4 en mm
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+      pdf.save('ticket.pdf');
+    });
   }
 }

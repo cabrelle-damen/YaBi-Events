@@ -1,9 +1,13 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Place } from '../modele/place.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LieuService {
+  private apiUrl = 'http://192.168.1.68:3000/event-place/create'
   private countriesAndCities: { [key: string]: string[] } = {
      Cameroon : [
       'Bafang',
@@ -76,7 +80,7 @@ export class LieuService {
     
   };
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   getCountries(): string[] {
     return Object.keys(this.countriesAndCities);
@@ -85,4 +89,15 @@ export class LieuService {
   getCitiesByCountry(country: string): string[] {
     return this.countriesAndCities[country] || [];
   }
+  private getAuthToken(): string {
+    return localStorage.getItem('authToken') || ''; // Or wherever your token is stored
+  }
+
+  createPlace(place: Place): Observable<Place> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.getAuthToken()}` // Add your auth token here
+    });
+    return this.http.post<Place>(this.apiUrl, place, { headers });
+  }
+  
 }

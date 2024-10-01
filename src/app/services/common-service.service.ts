@@ -7,7 +7,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 })
 export class CommonServiceService {
   messages: any = '';
-  SERVER_URL: string = 'http://localhost:8080/api/';
+  SERVER_URL: string = '';
   message: BehaviorSubject<String>;
 
   constructor(public http: HttpClient) {

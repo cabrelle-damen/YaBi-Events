@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonServiceService } from '../../../services/common-service.service';
 import { Event } from 'src/app/modele/Event.modele';
-import { MockEventService } from 'src/app/services/mock-event.service';
 import { LieuService } from 'src/app/services/lieu.service';
 import { Category } from 'src/app/modele/category.model';
 import { CategoryService } from 'src/app/services/category-service';
+import { EventService } from 'src/app/services/event-service';
+import { Place } from 'src/app/modele/place.model'; // Assuming you have a Place model
 
 @Component({
   selector: 'app-salesreport',
@@ -14,16 +14,14 @@ import { CategoryService } from 'src/app/services/category-service';
 export class SalesreportComponent implements OnInit {
   events: Event[] = [];
   categories: Category[] = [];
+  subcategories: string[] = [];  // Array to store subcategories of the selected category
   selectedEvent: Event | null = null;
 
   newEvent: Event = {
-    id: '',
     name: '',
     description: '',
-    category: { id: 0, name: '' },
-    type: 'private',
-    status: 'draft',
-    date: new Date(),
+    category: { id: 0, name: '', subcategories: [] },  // Updated category initialization
+    subcategory: '', 
     startDate: new Date(),
     endDate: new Date(),
     location: '',
@@ -36,24 +34,22 @@ export class SalesreportComponent implements OnInit {
     participants: 0,
     isFree: false,
     isOnline: false,
-    eventPlace: [] // Initialize as an empty array of Place
+    eventPlace: []
   };
-  
+
   countries: string[] = [];
   cities: string[] = [];
   errorMessage: string = '';
 
   constructor(
-    private commonService: CommonServiceService,
-    private mockEventService: MockEventService,
     private categoryService: CategoryService,
+    private eventService: EventService,
     private lieuService: LieuService
   ) {}
 
   ngOnInit(): void {
-    // this.loadEvents();
-    // this.loadCategories();
-    // this.countries = this.lieuService.getCountries();
+    this.loadCategories();
+    this.countries = this.lieuService.getCountries();
   }
 
   loadCategories(): void {
@@ -62,53 +58,82 @@ export class SalesreportComponent implements OnInit {
     });
   }
 
+  // Method to handle category change
+  onCategoryChange(): void {
+    const selectedCategory = this.categories.find(cat => cat.id === this.newEvent.category.id);
+    if (selectedCategory) {
+      this.subcategories = selectedCategory.subcategories;
+      this.newEvent.subcategory = '';  // Reset subcategory when category changes
+    }
+  }
+
   loadEvents(): void {
-    this.mockEventService.getEvents().subscribe((data: Event[]) => {
+    this.eventService.getEvents().subscribe((data: Event[]) => {
       this.events = data;
     });
   }
 
   onCountryChange(): void {
     this.cities = this.lieuService.getCitiesByCountry(this.newEvent.country);
-    this.newEvent.city = '';
+    this.newEvent.city = ''; // Reset city selection when country changes
   }
 
-  createEvent(form: any): void {
+  createPlaceAndEvent(form: any): void {
     if (form.valid) {
-      this.mockEventService.createEvent(this.newEvent).subscribe(() => {
-        this.loadEvents();
-        this.resetForm();
-      });
+      const place: Place = {
+        name: this.newEvent.location,
+        country: this.newEvent.country,
+        city: this.newEvent.city,
+      };
+  
+      // Create the place first
+      this.lieuService.createPlace(place).subscribe(
+        (createdPlace: Place) => {
+          console.log("Place created successfully:", createdPlace);
+  
+          // Assign the createdPlace object to eventPlace
+          this.newEvent.eventPlace = [createdPlace];  
+  
+          const eventToCreate: Event = {
+            name: this.newEvent.name,
+            description: this.newEvent.description,
+            category: this.newEvent.category,
+            subcategory: this.newEvent.subcategory,  // Handle the subcategory
+            startDate: this.newEvent.startDate,
+            endDate: this.newEvent.endDate,
+            location: this.newEvent.location,
+            organizer: this.newEvent.organizer,
+            eventPlace: this.newEvent.eventPlace,
+            country: this.newEvent.country,
+            city: this.newEvent.city,
+            numberOfPlaces: this.newEvent.numberOfPlaces,
+            pricePerSeat: this.newEvent.pricePerSeat,
+            imgUrl: this.newEvent.imgUrl,
+            participants: this.newEvent.participants,
+            isFree: this.newEvent.isFree,
+            isOnline: this.newEvent.isOnline
+          };
+  
+          // Now create the event
+          this.eventService.createEvent(eventToCreate).subscribe(() => {
+            this.loadEvents();  // Reload the event list
+            this.resetForm();   // Reset the form after event creation
+          });
+        },
+        (error) => {
+          console.error("Error creating place:", error);
+          this.errorMessage = "Failed to create place.";
+        }
+      );
     }
-  }
-
-  editEvent(event: Event): void {
-    this.selectedEvent = event;
-    this.newEvent = { ...event };
-    this.onCountryChange();
-  }
-
-  deleteEvent(id: number): void {
-    this.mockEventService.deleteEvent(id.toString()).subscribe(() => {
-      this.loadEvents();
-    });
-  }
-
-  submitEvent(id: number): void {
-    this.mockEventService.submitEvent(id.toString()).subscribe(() => {
-      this.loadEvents();
-    });
   }
 
   resetForm(): void {
     this.newEvent = {
-      id: '',
       name: '',
       description: '',
-      category: { id: 0, name: '' },
-      type: 'private',
-      status: 'draft',
-      date: new Date(),
+      category: { id: 0, name: '', subcategories: [] },  // Reset category
+      subcategory: '',
       startDate: new Date(),
       endDate: new Date(),
       location: '',
@@ -121,21 +146,17 @@ export class SalesreportComponent implements OnInit {
       participants: 0,
       isFree: false,
       isOnline: false,
-      eventPlace: [] // Initialize as an empty array of Place
+      eventPlace: [] 
     };
     this.selectedEvent = null;
     this.cities = [];
   }
-  
 
   onFileSelected(event: any): void {
-    const file = event.target.files[0];
+    const file: File = event.target.files[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.newEvent.imgUrl = e.target.result;
-      };
-      reader.readAsDataURL(file);
+      console.log("File selected:", file.name);
+      // File upload logic can be added here
     }
   }
 }

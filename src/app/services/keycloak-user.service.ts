@@ -6,9 +6,13 @@ import { Observable, tap } from 'rxjs';
   providedIn: 'root'
 })
 export class KeycloakUserService {
-  private baseUrl = 'http://localhost:8080/admin/realms/DAMEN'; 
+  private baseUrl = 'http://192.168.1.68:8080/admin/realms/YABI'; 
   private clientId = ''; 
   private token = ''; 
+
+  // private baseUrl = 'http://localhost:8080/admin/realms/DAMEN'; 
+  // private clientId = 'YaBi'; 
+  // private token = ''; 
 
   constructor(private http: HttpClient) {}
 

@@ -77,7 +77,7 @@ const routes: Routes = [
           canActivate: [AuthenticationGuard],
         },
         {
-          path: 'expenses',
+          path: 'statist',
           loadChildren: () =>
             import('./expenses/expenses.module').then(
               (m) => m.ExpensesModule

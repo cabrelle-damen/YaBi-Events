@@ -8,7 +8,7 @@ import { ExpensesComponent } from './expenses.component';
 const routes: Routes = [
   {path:'',component:ExpensesComponent,
   children: [
-    { path: "expenses-list", component: ExpensesListComponent },
+    { path: "Statistiques", component: ExpensesListComponent },
     { path: "add-expenses", component: AddExpensesComponent},
     { path: "edit-expenses", component: EditExpensesComponent},
 ]

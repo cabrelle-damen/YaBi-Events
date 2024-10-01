@@ -14,7 +14,7 @@ export class AuthentificationComponent {
     this.keycloakService.login();
   }
 
-  logout() {
-    this.keycloakService.logout();
-  }
+  // logout() {
+  //   this.keycloakService.logout();
+  // }
 }

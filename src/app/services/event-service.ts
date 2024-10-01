@@ -4,19 +4,19 @@ import { Observable } from 'rxjs';
 import { Event } from 'src/app/modele/Event.modele';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EventService {
-  private apiUrl = 'http://192.168.1.68:3000/event'; 
+  private apiUrl = 'http://192.168.1.68:3000/event';
 
   constructor(private http: HttpClient) {}
 
   createEvent(event: Event): Observable<Event> {
-    return this.http.post<Event>(`${this.apiUrl}`, event);
+    return this.http.post<Event>(`${this.apiUrl}/create`, event);
   }
 
   updateEvent(event: Event): Observable<Event> {
-    return this.http.put<Event>(`${this.apiUrl}/${event.id}`, event);
+    return this.http.put<Event>(`${this.apiUrl}/${event._id}`, event);
   }
 
   deleteEvent(eventId: string): Observable<void> {
@@ -27,11 +27,15 @@ export class EventService {
     return this.http.post<Event>(`${this.apiUrl}/${eventId}/submit`, {});
   }
 
-  getEvent(eventId: string): Observable<Event> {
-    return this.http.get<Event>(`${this.apiUrl}/${eventId}`);
+  participateEvent(eventId: string): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/subscribe/${eventId}`, {});
   }
 
-  getEvents(): Observable<Event[]> {
-    return this.http.get<Event[]>(this.apiUrl);
+  getEvent(eventId: string): Observable<{ event: Event; isParticipating: boolean }> {
+    return this.http.get<{ event: Event; isParticipating: boolean }>(`${this.apiUrl}/${eventId}`);
+  }
+
+  getEvents(): Observable<any> {
+    return this.http.get<any>(this.apiUrl);
   }
 }
